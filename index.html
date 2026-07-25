@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="#top"><span class="logo-mark">KPC</span><span class="divider"></span><strong>KPC Kitchen Talks</strong></a>
+  <a class="brand" href="#top"><img class="brand-logo" src="assets/kpc-logo.webp" alt="Kamloops Pickleball Club"><span class="divider"></span><strong>KPC Kitchen Talks</strong></a>
   <nav><a href="#learn">Learn</a><a href="#games">Games</a><a href="#featured">Featured</a></nav>
 </header>
 <main id="top">
@@ -20,7 +20,7 @@
       <p class="lead">Kitchen Talks will help you understand what is coming, why KPC is making the change, and how to learn at your own pace.</p>
       <div class="actions"><a class="button dark" href="#learn">Explore what is coming</a><button class="text-link" data-start-quiz="erne">Play with Erne</button></div>
     </div>
-    <aside class="erne-welcome"><div class="mascot-circle">ERNE</div><p><strong>Start anywhere.</strong><br>You do not need to learn everything at once.</p></aside>
+    <aside class="erne-welcome"><img src="assets/erne.webp" alt="Erne, KPC guide"><p><strong>Start anywhere.</strong><br>You do not need to learn everything at once.</p></aside>
   </section>
 
   <section id="learn" class="section white compact-section">
@@ -31,8 +31,8 @@
   <section id="games" class="section compact-section">
     <header class="section-heading centre"><p class="eyebrow">Test what you already know</p><h2>Learn by playing.</h2><p>No typing, no pressure and no saved scores.</p></header>
     <div class="game-grid compact-games">
-      <article class="game-card erne-game"><div class="character"><span>ERNE</span></div><div><small>Beginner</small><h3>Play with Erne</h3><p>Friendly questions about what is coming and the main Microsoft tools.</p><button class="button dark" data-start-quiz="erne">Play with Erne</button></div></article>
-      <article class="game-card smash-game"><div class="character"><span>SMASH</span></div><div><small>Harder</small><h3>Challenge Smash</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Challenge Smash</button></div></article>
+      <article class="game-card erne-game"><div class="character"><img src="assets/erne.webp" alt="Erne"></div><div><small>Beginner</small><h3>Play with Erne</h3><p>Friendly questions about what is coming and the main Microsoft tools.</p><button class="button dark" data-start-quiz="erne">Play with Erne</button></div></article>
+      <article class="game-card smash-game"><div class="character"><img src="assets/smash.webp" alt="Smash"></div><div><small>Harder</small><h3>Challenge Smash</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Challenge Smash</button></div></article>
     </div>
   </section>
 
@@ -47,5 +47,6 @@
 <dialog id="topicDialog"><button class="close" data-close-topic>×</button><div id="topicContent"></div></dialog>
 <dialog id="quizDialog"><button class="close" data-close-quiz>×</button><div id="quizContent"></div></dialog>
 <script src="app.js"></script>
+<script src="overrides.js"></script>
 </body>
 </html>
