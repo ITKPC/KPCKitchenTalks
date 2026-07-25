@@ -7,6 +7,7 @@
   <title>KPC KitchenTalks</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="icon-styles.css">
+  <link rel="stylesheet" href="quiz-training.css">
 </head>
 <body>
 <header class="site-header">
@@ -25,12 +26,12 @@
   </section>
 
   <section id="talks" class="section white compact-section">
-    <header class="section-heading"><p class="eyebrow">KitchenTalks</p><h2>Short explanations about the change.</h2><p>Select a KitchenTalk to open the complete explanation and memory hook.</p></header>
+    <header class="section-heading"><p class="eyebrow">KitchenTalks</p><h2>Short explanations about the change.</h2><p>Select a KitchenTalk to open the complete explanation and Less Computer, More Pickleball reminder.</p></header>
     <div id="topicGrid" class="topic-grid compact-grid"></div>
   </section>
 
   <section id="games" class="section compact-section">
-    <header class="section-heading centre"><p class="eyebrow">Test what you already know</p><h2>Learn by playing.</h2><p>No typing, no pressure and no saved scores.</p></header>
+    <header class="section-heading centre"><p class="eyebrow">Test what you already know</p><h2>Learn by playing.</h2><p>No typing and no pressure.</p></header>
     <div class="game-grid compact-games">
       <article class="game-card erne-game"><div class="character"><img src="assets/erne.webp" alt="Erne"></div><div><small>Beginner</small><h3>Play with Erne</h3><p>Friendly questions about what is coming and the main Microsoft tools.</p><button class="button dark" data-start-quiz="erne">Play with Erne</button></div></article>
       <article class="game-card smash-game"><div class="character"><img src="assets/smash.webp" alt="Smash"></div><div><small>Harder</small><h3>Challenge Smash</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Challenge Smash</button></div></article>
@@ -42,12 +43,13 @@
     <button class="button outline" data-topic="talk1">Open KitchenTalk #1</button>
   </section>
 
-  <section class="how-strip"><span>Choose a KitchenTalk</span><b>→</b><span>Read the full explanation</span><b>→</b><span>Remember the memory hook</span></section>
+  <section class="how-strip"><span>Choose a KitchenTalk</span><b>→</b><span>Read the full explanation</span><b>→</b><span>Spend less time on computers</span></section>
 </main>
-<footer><span>KPC KitchenTalks · Kamloops Pickleball Club</span><span>No sign-in. No personal information. Scores are not saved.</span></footer>
+<footer><span>KPC KitchenTalks · Kamloops Pickleball Club</span><span>No sign-in. No personal information.</span></footer>
 <dialog id="topicDialog"><button class="close" data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
 <dialog id="quizDialog"><button class="close" data-close-quiz aria-label="Close">×</button><div id="quizContent"></div></dialog>
 <script src="app.js"></script>
+<script src="quiz-training.js"></script>
 <script src="icons.js"></script>
 </body>
 </html>
