@@ -1,25 +1,23 @@
 const quizTrainingMap={
-  erne:["outlook","teams","microsoft-365","onedrive","personal-access","security","sharepoint","microsoft-365"],
-  smash:["teams","onedrive","sharepoint","sharepoint","teams","personal-access","sharepoint","microsoft-365"]
+  erne:["email","teams","microsoft-365","onedrive","personal-access","security","sharepoint","microsoft-365"],
+  smash:["teams","onedrive","sharepoint","sharing","meetings","personal-access","sharepoint","kpc-guidance"]
 };
 
 const trainingLabels={
-  "microsoft-365":"Microsoft 365",
-  outlook:"Outlook",
-  teams:"Microsoft Teams",
-  sharepoint:"SharePoint",
+  "microsoft-365":"Microsoft 365 Overview",
+  email:"KPC Email and Outlook",
+  teams:"Teams and Committee Work",
   onedrive:"OneDrive",
+  sharepoint:"SharePoint and Official Records",
   "personal-access":"Personal Sign-Ins and Access",
-  security:"Security and Sign-In Approvals"
+  security:"Security and Sign-In Approvals",
+  sharing:"Sharing Files and Links",
+  meetings:"Meetings in Outlook and Teams",
+  "kpc-guidance":"KPC-Specific Guidance"
 };
 
-function readMissedTraining(){
-  try{return JSON.parse(sessionStorage.getItem("kpcMissedTraining")||"[]")}catch{return []}
-}
-
-function saveMissedTraining(items){
-  try{sessionStorage.setItem("kpcMissedTraining",JSON.stringify([...new Set(items)]))}catch{}
-}
+function readMissedTraining(){try{return JSON.parse(sessionStorage.getItem("kpcMissedTraining")||"[]")}catch{return []}}
+function saveMissedTraining(items){try{sessionStorage.setItem("kpcMissedTraining",JSON.stringify([...new Set(items)]))}catch{}}
 
 function openTopic(id){
   const t=topics.find(x=>x.id===id);
@@ -28,11 +26,7 @@ function openTopic(id){
   topicDialog.showModal();
 }
 
-function startQuiz(type){
-  quizState={type,index:0,score:0,answered:false,missed:[]};
-  renderQuestion();
-  quizDialog.showModal();
-}
+function startQuiz(type){quizState={type,index:0,score:0,answered:false,missed:[]};renderQuestion();quizDialog.showModal()}
 
 function chooseAnswer(index){
   if(quizState.answered)return;
@@ -40,15 +34,9 @@ function chooseAnswer(index){
   const quiz=quizzes[quizState.type];
   const item=quiz.questions[quizState.index];
   const buttons=[...quizContent.querySelectorAll(".answer")];
-  buttons.forEach((b,i)=>{
-    b.disabled=true;
-    if(i===item.correct)b.classList.add("correct");
-    if(i===index&&i!==item.correct)b.classList.add("incorrect");
-  });
+  buttons.forEach((button,i)=>{button.disabled=true;if(i===item.correct)button.classList.add("correct");if(i===index&&i!==item.correct)button.classList.add("incorrect")});
   const good=index===item.correct;
-  if(good){
-    quizState.score++;
-  }else{
+  if(good){quizState.score++}else{
     const trainingId=quizTrainingMap[quizState.type][quizState.index];
     if(trainingId)quizState.missed.push(trainingId);
   }
@@ -61,12 +49,5 @@ function renderResult(){
   const accumulated=[...new Set([...readMissedTraining(),...quizState.missed])];
   saveMissedTraining(accumulated);
   const links=accumulated.map(id=>`<a class="training-link" href="learn.html#${id}">${trainingLabels[id]}</a>`).join("");
-  quizContent.innerHTML=`
-    <p class="eyebrow">${quiz.name} complete</p>
-    <h2>${quizState.type==="erne"?"Warm-up finished":"Challenge finished"}</h2>
-    <div class="score">${quizState.score}/${quiz.questions.length}</div>
-    ${allCorrect
-      ?`<div class="perfect-result"><h3>Kewl — perfect game.</h3><p>You got every question right.</p></div>`
-      :`<div class="training-result"><h3>Review these training topics</h3><p>These short lessons match the questions that need another look.</p><div class="training-links">${links}</div></div>`}
-    <div class="actions"><button class="button dark" data-replay>Play again</button><button class="button outline" data-close-result>Back to KitchenTalks</button></div>`;
+  quizContent.innerHTML=`<p class="eyebrow">${quiz.name} complete</p><h2>${quizState.type==="erne"?"Warm-up finished":"Challenge finished"}</h2><div class="score">${quizState.score}/${quiz.questions.length}</div>${allCorrect?`<div class="perfect-result"><h3>Kewl — perfect game.</h3><p>You got every question right.</p></div>`:`<div class="training-result"><h3>Your recommended training</h3><p>These topics match the questions that need another look.</p><div class="training-links">${links}</div></div>`}<div class="actions"><button class="button dark" data-replay>Play again</button><button class="button outline" data-close-result>Back to KitchenTalks</button></div>`;
 }
