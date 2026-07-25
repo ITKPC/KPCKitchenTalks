@@ -9,22 +9,22 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="#top"><img class="brand-logo" src="assets/kpc-logo.webp" alt="Kamloops Pickleball Club"><span class="divider"></span><strong>KPC Kitchen Talks</strong></a>
-  <nav><a href="#learn">Learn</a><a href="#games">Games</a><a href="#featured">Featured</a></nav>
+  <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.webp" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC Kitchen Talks</strong></a>
+  <nav><a class="active" href="#talks">Kitchen Talks</a><a href="learn.html">Learn</a><a href="#games">Games</a></nav>
 </header>
 <main id="top">
   <section class="hero compact-hero">
     <div class="hero-copy">
       <p class="eyebrow">Microsoft 365 is coming to KPC</p>
       <h1>A simpler way for KPC volunteers to work together.</h1>
-      <p class="lead">Kitchen Talks will help you understand what is coming, why KPC is making the change, and how to learn at your own pace.</p>
-      <div class="actions"><a class="button dark" href="#learn">Explore what is coming</a><button class="text-link" data-start-quiz="erne">Play with Erne</button></div>
+      <p class="lead">Kitchen Talks explain what is coming, why KPC is making the change, and what it means for volunteers.</p>
+      <div class="actions"><a class="button dark" href="#talks">Browse Kitchen Talks</a><a class="button outline" href="learn.html">Explore Microsoft 365 Learning</a></div>
     </div>
     <aside class="erne-welcome"><img src="assets/erne.webp" alt="Erne, KPC guide"><p><strong>Start anywhere.</strong><br>You do not need to learn everything at once.</p></aside>
   </section>
 
-  <section id="learn" class="section white compact-section">
-    <header class="section-heading"><p class="eyebrow">Start here</p><h2>What would you like to learn about?</h2></header>
+  <section id="talks" class="section white compact-section">
+    <header class="section-heading"><p class="eyebrow">KPC Kitchen Talks</p><h2>Short explanations about the change.</h2><p>Select a Kitchen Talk to see a preview, then choose Read more for the full explanation.</p></header>
     <div id="topicGrid" class="topic-grid compact-grid"></div>
   </section>
 
@@ -37,11 +37,11 @@
   </section>
 
   <section id="featured" class="section white featured">
-    <div><p class="eyebrow">Featured Kitchen Talk</p><h2>Why is KPC moving to Microsoft 365?</h2><p>Learn what problems the new system is intended to solve and how it should make volunteer work easier to manage.</p></div>
-    <button class="button outline" data-topic="why">Read this Kitchen Talk</button>
+    <div><p class="eyebrow">Featured Kitchen Talk</p><h2>What the Board Said Yes To</h2><p>Why KPC is moving from Google Workspace to Microsoft 365 and what the change is intended to accomplish.</p></div>
+    <button class="button outline" data-topic="talk1">Open Kitchen Talk #1</button>
   </section>
 
-  <section class="how-strip"><span>Choose a topic</span><b>→</b><span>Learn in a few minutes</span><b>→</b><span>Return whenever you need help</span></section>
+  <section class="how-strip"><span>Choose a Kitchen Talk</span><b>→</b><span>Read the preview</span><b>→</b><span>Open the full explanation</span></section>
 </main>
 <footer><span>KPC Kitchen Talks · Kamloops Pickleball Club</span><span>No sign-in. No personal information. Scores are not saved.</span></footer>
 <dialog id="topicDialog"><button class="close" data-close-topic>×</button><div id="topicContent"></div></dialog>
