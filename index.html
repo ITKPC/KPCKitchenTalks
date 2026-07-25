@@ -10,34 +10,38 @@
 <body>
 <header class="site-header">
   <a class="brand" href="#top"><span class="logo-mark">KPC</span><span class="divider"></span><strong>KPC Kitchen Talks</strong></a>
-  <nav><a href="#coming">What is coming</a><a href="#games">Play a game</a></nav>
+  <nav><a href="#learn">Learn</a><a href="#games">Games</a><a href="#featured">Featured</a></nav>
 </header>
 <main id="top">
-  <section class="hero">
-    <div>
-      <p class="eyebrow">What is coming — and why</p>
+  <section class="hero compact-hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Microsoft 365 is coming to KPC</p>
       <h1>A simpler way for KPC volunteers to work together.</h1>
-      <p class="lead">KPC is preparing to move to Microsoft 365. Kitchen Talks will explain what is coming, why the change matters and what you will need to know before launch.</p>
-      <p><strong>You do not need to learn everything now.</strong> Short, practical help will be available whenever you need it.</p>
-      <div class="actions"><a class="button dark" href="#coming">See what is coming</a><a class="button outline" href="#games">Try a knowledge game</a></div>
+      <p class="lead">Kitchen Talks will help you understand what is coming, why KPC is making the change, and how to learn at your own pace.</p>
+      <div class="actions"><a class="button dark" href="#learn">Explore what is coming</a><button class="text-link" data-start-quiz="erne">Play with Erne</button></div>
     </div>
-    <aside class="host-card erne"><span class="host-name">ERNE</span><strong>I’ll help with the basics.</strong></aside>
+    <aside class="erne-welcome"><div class="mascot-circle">ERNE</div><p><strong>Start anywhere.</strong><br>You do not need to learn everything at once.</p></aside>
   </section>
 
-  <section id="coming" class="section white">
-    <header class="section-heading"><p class="eyebrow">Microsoft 365 readiness</p><h2>Choose what you want to understand.</h2><p>These are introductions, not technical training.</p></header>
-    <div id="topicGrid" class="topic-grid"></div>
+  <section id="learn" class="section white compact-section">
+    <header class="section-heading"><p class="eyebrow">Start here</p><h2>What would you like to learn about?</h2></header>
+    <div id="topicGrid" class="topic-grid compact-grid"></div>
   </section>
 
-  <section id="games" class="section">
-    <header class="section-heading centre"><p class="eyebrow">Learn by playing</p><h2>See what you already know.</h2><p>No typing, no pressure and no saved scores.</p></header>
-    <div class="game-grid">
-      <article class="game-card erne-game"><div class="character"><span>ERNE</span></div><div><small>Warm-up level</small><h3>Play with Erne</h3><p>Friendly questions about what is coming and the basic role of each Microsoft tool.</p><button class="button dark" data-start-quiz="erne">Start Erne’s Warm-Up</button></div></article>
-      <article class="game-card smash-game"><div class="character"><span>SMASH</span></div><div><small>Level-up challenge</small><h3>Take the Smash Challenge</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Start the Smash Challenge</button></div></article>
+  <section id="games" class="section compact-section">
+    <header class="section-heading centre"><p class="eyebrow">Test what you already know</p><h2>Learn by playing.</h2><p>No typing, no pressure and no saved scores.</p></header>
+    <div class="game-grid compact-games">
+      <article class="game-card erne-game"><div class="character"><span>ERNE</span></div><div><small>Beginner</small><h3>Play with Erne</h3><p>Friendly questions about what is coming and the main Microsoft tools.</p><button class="button dark" data-start-quiz="erne">Play with Erne</button></div></article>
+      <article class="game-card smash-game"><div class="character"><span>SMASH</span></div><div><small>Harder</small><h3>Challenge Smash</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Challenge Smash</button></div></article>
     </div>
   </section>
 
-  <section class="section future white"><div><p class="eyebrow">After launch</p><h2>Learn on demand.</h2><p>When a real task comes up, choose it and follow a short lesson with pictures, optional videos and a quick practice activity.</p></div><div class="future-grid"><span>Short explanations</span><span>Step-by-step pictures</span><span>Optional videos</span><span>Quick practice</span></div></section>
+  <section id="featured" class="section white featured">
+    <div><p class="eyebrow">Featured Kitchen Talk</p><h2>Why is KPC moving to Microsoft 365?</h2><p>Learn what problems the new system is intended to solve and how it should make volunteer work easier to manage.</p></div>
+    <button class="button outline" data-topic="why">Read this Kitchen Talk</button>
+  </section>
+
+  <section class="how-strip"><span>Choose a topic</span><b>→</b><span>Learn in a few minutes</span><b>→</b><span>Return whenever you need help</span></section>
 </main>
 <footer><span>KPC Kitchen Talks · Kamloops Pickleball Club</span><span>No sign-in. No personal information. Scores are not saved.</span></footer>
 <dialog id="topicDialog"><button class="close" data-close-topic>×</button><div id="topicContent"></div></dialog>
