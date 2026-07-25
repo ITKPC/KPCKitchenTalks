@@ -28,11 +28,37 @@ document.addEventListener("click",event=>{
 document.querySelector("[data-close-training]").addEventListener("click",()=>dialog.close());
 dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close()});
 
+function readRecommendedTraining(){
+  try{
+    const saved=JSON.parse(sessionStorage.getItem("kpcMissedTraining")||"[]");
+    return Array.isArray(saved)?saved:[];
+  }catch{return []}
+}
+
+function focusIcon(){
+  return `<span class="focus-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="24" r="6" fill="currentColor"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span>`;
+}
+
 const requested=location.hash.slice(1);
-if(requested){
-  const card=document.getElementById(requested);
-  if(card){
+const recommended=[...new Set([...readRecommendedTraining(),...(requested?[requested]:[])])].filter(id=>document.getElementById(id));
+
+if(recommended.length){
+  const grid=document.querySelector(".learning-grid");
+  const notice=document.createElement("div");
+  notice.className="focus-notice";
+  notice.innerHTML=`${focusIcon()}<div><p class="eyebrow">Your focus areas</p><h2>Start with the topics marked below.</h2><p>These match the questions that need another look.</p></div>`;
+  grid.before(notice);
+
+  recommended.forEach(id=>{
+    const card=document.getElementById(id);
+    if(!card)return;
     card.classList.add("recommended-training");
-    setTimeout(()=>card.scrollIntoView({behavior:"smooth",block:"center"}),50);
-  }
+    const badge=document.createElement("div");
+    badge.className="focus-badge";
+    badge.innerHTML=`${focusIcon()}<span>Focus here</span>`;
+    card.prepend(badge);
+  });
+
+  const first=document.getElementById(requested)||document.getElementById(recommended[0]);
+  if(first)setTimeout(()=>first.scrollIntoView({behavior:"smooth",block:"center"}),80);
 }
