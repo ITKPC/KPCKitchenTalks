@@ -1,234 +1,62 @@
-const lessons = [
-  {
-    id: "meet-tools",
-    category: "Getting Started",
-    title: "Meet Your KPC Microsoft 365 Tools",
-    summary: "Understand what Teams, Outlook, SharePoint and OneDrive each do.",
-    time: "4 min",
-    level: "Start here",
-    steps: [
-      "Use Outlook for KPC email, calendars and meeting invitations.",
-      "Use Teams as the main place to communicate and work with your committee.",
-      "Use SharePoint for shared KPC information and files. Teams files are normally stored there.",
-      "Use OneDrive for your own drafts, notes and working files.",
-      "Use Word, Excel and PowerPoint to create the files stored in these locations."
-    ],
-    practice: "Open Microsoft 365 and identify where you would go for email, committee work and a personal draft.",
-    resourceLabel: "Microsoft 365 basics video training",
-    resourceUrl: "https://support.microsoft.com/en-us/office/microsoft-365-basics-video-training-396b8d9e-e118-42d0-8a0d-87d1f2f055fb"
-  },
-  {
-    id: "find-team",
-    category: "Teams",
-    title: "Find Your Committee in Teams",
-    summary: "Open Teams and locate the workspace for your KPC committee.",
-    time: "3 min",
-    level: "Beginner",
-    steps: [
-      "Open Microsoft Teams using your KPC account.",
-      "Select Teams from the left side of the screen.",
-      "Find the name of your committee or board workspace.",
-      "Select the General channel first.",
-      "Look for Posts, Files and any other tabs added for your committee."
-    ],
-    practice: "Open your committee workspace and find its Files tab.",
-    resourceLabel: "Microsoft Teams help and learning",
-    resourceUrl: "https://support.microsoft.com/en-us/teams"
-  },
-  {
-    id: "teams-post",
-    category: "Teams",
-    title: "Read and Reply to a Teams Post",
-    summary: "Keep committee discussions together by replying to the correct post.",
-    time: "3 min",
-    level: "Beginner",
-    steps: [
-      "Open the correct team and channel.",
-      "Read the original post and any existing replies.",
-      "Select Reply under that post rather than starting a new conversation.",
-      "Type your message and check that it is intended for everyone in the channel.",
-      "Select Send."
-    ],
-    practice: "Reply to a practice post in your committee's training channel.",
-    resourceLabel: "Microsoft Teams help and learning",
-    resourceUrl: "https://support.microsoft.com/en-us/teams"
-  },
-  {
-    id: "shared-file",
-    category: "SharePoint",
-    title: "Find and Open a Shared File",
-    summary: "Access a committee file through Teams without creating another copy.",
-    time: "4 min",
-    level: "Beginner",
-    steps: [
-      "Open the correct committee in Teams.",
-      "Select the channel where the work belongs.",
-      "Select Files.",
-      "Open the appropriate folder and select the file.",
-      "Work in the shared file whenever possible instead of downloading and emailing copies."
-    ],
-    practice: "Find one shared document and open it without downloading it.",
-    resourceLabel: "Share documents in Microsoft 365",
-    resourceUrl: "https://support.microsoft.com/en-us/office/video-share-documents-in-microsoft-365"
-  },
-  {
-    id: "join-meeting",
-    category: "Teams",
-    title: "Join a Teams Meeting",
-    summary: "Join from Outlook or Teams and check your microphone and camera.",
-    time: "3 min",
-    level: "Beginner",
-    steps: [
-      "Open the meeting invitation in Outlook or the meeting in your Teams calendar.",
-      "Select the meeting link or Join.",
-      "Confirm that you are using your KPC account.",
-      "Check your microphone, speaker and camera before entering.",
-      "Select Join now and mute your microphone when you are not speaking."
-    ],
-    practice: "Open an upcoming meeting invitation and locate the Join button without entering the meeting.",
-    resourceLabel: "Microsoft video: Join a Teams meeting",
-    resourceUrl: "https://support.microsoft.com/en-us/office/get-started-with-meetings-909b75b4-5448-455c-9c9a-5115acf4d3d8"
-  },
-  {
-    id: "outlook-basics",
-    category: "Outlook",
-    title: "Outlook Email and Calendar Basics",
-    summary: "Use your KPC mailbox and calendar for club communication and invitations.",
-    time: "5 min",
-    level: "Beginner",
-    steps: [
-      "Open Outlook using your KPC account.",
-      "Use Mail to read and send KPC messages.",
-      "Use Calendar to see meetings and appointments.",
-      "Open meeting invitations and respond with Accept, Tentative or Decline.",
-      "Use KPC email rather than personal email for KPC business."
-    ],
-    practice: "Open your KPC calendar and identify your next scheduled meeting.",
-    resourceLabel: "Microsoft 365 basics video training",
-    resourceUrl: "https://support.microsoft.com/en-us/office/microsoft-365-basics-video-training-396b8d9e-e118-42d0-8a0d-87d1f2f055fb"
-  },
-  {
-    id: "sharepoint-home",
-    category: "SharePoint",
-    title: "Use the KPC SharePoint Home Site",
-    summary: "Find KPC news, policies, templates, minutes and internal links.",
-    time: "4 min",
-    level: "Beginner",
-    steps: [
-      "Open the KPC SharePoint home site from its saved link or Microsoft 365.",
-      "Use the main navigation to find the area you need.",
-      "Look for official policies, procedures, templates and approved minutes.",
-      "Use Search when you do not know where an item is located.",
-      "Bookmark the home site for future use."
-    ],
-    practice: "Find one KPC policy or template and note where it is stored.",
-    resourceLabel: "Microsoft video: SharePoint home base",
-    resourceUrl: "https://support.microsoft.com/en-us/office/sharepoint-your-company-s-home-base-2ebcfb7f-dc5e-4202-a6bb-366c6578c242"
-  },
-  {
-    id: "where-save",
-    category: "OneDrive",
-    title: "OneDrive or Teams: Where Should I Save This?",
-    summary: "Choose the right home for a private draft or a shared KPC document.",
-    time: "4 min",
-    level: "Essential",
-    steps: [
-      "Save private notes, early drafts and temporary files in your KPC OneDrive.",
-      "Save committee work in the correct Teams channel or SharePoint library.",
-      "Move a draft into the shared workspace when it becomes committee work.",
-      "Do not keep the only copy of an official KPC document in one person's OneDrive.",
-      "Share links to shared files instead of sending multiple attachments."
-    ],
-    practice: "Choose one of your current files and decide whether it belongs in OneDrive or a committee workspace.",
-    resourceLabel: "Microsoft video: OneDrive vs. SharePoint",
-    resourceUrl: "https://support.microsoft.com/en-us/office/get-started-creating-managing-and-sharing-files-in-onedrive-and-sharepoint-123ff6b5-3c93-4a60-99d4-ca1bfb1734fe"
-  },
-  {
-    id: "onedrive-basics",
-    category: "OneDrive",
-    title: "Find Your Way Around OneDrive",
-    summary: "Locate, upload, organize and recover your individual KPC files.",
-    time: "4 min",
-    level: "Beginner",
-    steps: [
-      "Open OneDrive from Microsoft 365.",
-      "Use My files to see your folders and documents.",
-      "Use Recent to find something you worked on recently.",
-      "Use Shared to see files shared with you or by you.",
-      "Use the Recycle bin if you accidentally delete a file."
-    ],
-    practice: "Open OneDrive and find one recent file and the Recycle bin.",
-    resourceLabel: "Microsoft video: OneDrive basics",
-    resourceUrl: "https://support.microsoft.com/en-us/office/video-onedrive-basics-fe8aab1e-3d1a-4a65-a9b6-77b79b6dbb30"
-  }
+const topics=[
+{id:"why",title:"Why KPC is making this change",summary:"The problems we are trying to solve and the benefits for volunteers.",points:["Make communication easier to follow.","Keep committee information organized and easier to find.","Reduce reliance on one volunteer's personal files or email.","Make it easier for new volunteers to step into a role."],resource:"https://support.microsoft.com/en-us/office/microsoft-365-basics-video-training-396b8d9e-e118-42d0-8a0d-87d1f2f055fb"},
+{id:"what",title:"What Microsoft 365 is",summary:"A connected set of tools for email, teamwork, meetings and files.",points:["Outlook will handle KPC email and calendars.","Teams will be the main committee workspace.","SharePoint will organize shared KPC information and files.","OneDrive will be each person's individual working area."],resource:"https://support.microsoft.com/en-us/office/microsoft-365-basics-video-training-396b8d9e-e118-42d0-8a0d-87d1f2f055fb"},
+{id:"change",title:"What will change for me",summary:"A preview of email, meetings, files and committee work.",points:["You will use an individual KPC account.","Committee work will be easier to find in Teams.","Shared files will have one current version instead of many attachments.","Meeting invitations and KPC email will be handled through Outlook."],resource:"https://support.microsoft.com/en-us/teams"},
+{id:"familiar",title:"What will stay familiar",summary:"Email is still email, and familiar Office files will still be used.",points:["You can continue using Word, Excel and PowerPoint.","You will still receive email and calendar invitations.","You will still open, read and edit documents.","You only need to learn the features that matter for your role."],resource:"https://support.microsoft.com/en-us/office/microsoft-365-basics-video-training-396b8d9e-e118-42d0-8a0d-87d1f2f055fb"},
+{id:"teams",title:"How committees will work in Teams",summary:"A preview of committee workspaces, conversations, meetings and files.",points:["Each committee can have its own organized workspace.","Updates and discussions can stay with the related work.","Meetings and shared files can be reached from the same place.","Teams is the front door; SharePoint stores the shared files behind it."],resource:"https://support.microsoft.com/en-us/teams"},
+{id:"files",title:"Where KPC information will live",summary:"A simple explanation of Teams, SharePoint and OneDrive.",points:["Committee files belong in Teams or SharePoint.","Official KPC information belongs in an approved shared location.","OneDrive is for your own drafts and working files.","Important records should not live only in one person's account."],resource:"https://support.microsoft.com/en-us/office/get-started-creating-managing-and-sharing-files-in-onedrive-and-sharepoint-123ff6b5-3c93-4a60-99d4-ca1bfb1734fe"},
+{id:"account",title:"Your KPC account and sign-in",summary:"Why accounts are individual and what secure sign-in means.",points:["Each volunteer uses their own KPC account.","Accounts and passwords should not be shared.","Multi-factor authentication adds another sign-in check.","Never approve a sign-in request you did not start."],resource:"https://support.microsoft.com/en-us/account-billing/how-to-use-the-microsoft-authenticator-app-9783c865-0308-42fb-a519-8cf666fe0acc"},
+{id:"before",title:"What you need to do before launch",summary:"The preparation steps will be kept short and clearly communicated.",points:["Watch for KPC instructions about your new account.","Confirm that KPC has the correct contact information for you.","Be ready to set up secure sign-in when asked.","Use Kitchen Talks for orientation; detailed steps will come closer to launch."],resource:"https://support.microsoft.com/en-us/office/sign-in-to-microsoft-365-b9582171-fd1f-4284-9846-bdd72bb28426"},
+{id:"launch",title:"What happens on launch day",summary:"What users should expect when the new tools become available.",points:["You will receive clear instructions about when to begin using the new system.","You may be asked to sign in and complete a security check.","KPC support information will be provided.","You will not be expected to know every tool on day one."],resource:"https://support.microsoft.com/en-us/office/sign-in-to-microsoft-365-b9582171-fd1f-4284-9846-bdd72bb28426"},
+{id:"later",title:"How Kitchen Talks will help later",summary:"Short lessons will be available whenever a real task comes up.",points:["Choose the task you need help with.","Read a short KPC explanation.","Use pictures or watch an optional video.","Try the task and return whenever you need a refresher."],resource:"https://support.microsoft.com/en-us/training"},
+{id:"questions",title:"Questions and concerns",summary:"Straight answers to common questions about the change.",points:["You do not need to be a technology expert.","You will not need to learn everything at once.","Support will focus on real KPC tasks.","The first version of this app does not collect names or scores."],resource:"https://support.microsoft.com/en-us"},
+{id:"timeline",title:"Timeline and next steps",summary:"What is happening now, what comes next and how updates will be shared.",points:["KPC is currently preparing the Microsoft 365 environment.","Readiness Kitchen Talks come before deployment.","Account and launch instructions will follow when dates are confirmed.","Task-based training will be added after the KPC environment is ready."],resource:"https://support.microsoft.com/en-us/office/microsoft-365-basics-video-training-396b8d9e-e118-42d0-8a0d-87d1f2f055fb"}
 ];
 
-const grid = document.querySelector("#lessonGrid");
-const search = document.querySelector("#lessonSearch");
-const filterButtons = document.querySelector("#filterButtons");
-const noResults = document.querySelector("#noResults");
-const dialog = document.querySelector("#lessonDialog");
-const dialogContent = document.querySelector("#dialogContent");
-const closeDialog = document.querySelector("#closeDialog");
-let activeFilter = "all";
+const quizzes={
+erne:{name:"Erne’s Warm-Up",host:"Erne",questions:[
+{q:"Which Microsoft tool will KPC use for email and calendars?",a:["Outlook","Teams","SharePoint","OneDrive"],correct:0,why:"Outlook is the KPC email and calendar tool."},
+{q:"Where will committees mainly communicate and work together?",a:["Teams","OneDrive","A personal email account","A USB drive"],correct:0,why:"Teams will be the main workspace for committee conversations, meetings and shared work."},
+{q:"Do you need to learn every Microsoft 365 feature before launch?",a:["Yes, all of them","No, only what you need for your role","Only Excel","Only if you are on the board"],correct:1,why:"Kitchen Talks are designed so you can learn practical tasks when you need them."},
+{q:"What is OneDrive mainly for?",a:["Your own drafts and working files","All official KPC records","Public website pages","Committee announcements"],correct:0,why:"OneDrive is your individual KPC work area. Shared committee records belong in Teams or SharePoint."},
+{q:"Should two volunteers share one KPC account?",a:["Yes","Only on weekends","No","Only for meetings"],correct:2,why:"Each volunteer should use an individual account for security and accountability."},
+{q:"What should you do with an unexpected sign-in approval request?",a:["Approve it quickly","Ignore or deny it and report it","Send it to another volunteer","Post it in Teams"],correct:1,why:"Never approve a sign-in you did not start."},
+{q:"Which statement best describes SharePoint?",a:["KPC’s organized shared information and file system","A video meeting camera","A password manager","A spreadsheet"],correct:0,why:"SharePoint organizes shared KPC information and also stores files accessed through Teams."},
+{q:"What is the main idea behind Kitchen Talks?",a:["Learn everything in one day","Learn on demand in short practical lessons","Take a formal certification exam","Replace all KPC meetings"],correct:1,why:"Kitchen Talks provide short help when a task or question comes up."}
+]},
+smash:{name:"Smash Challenge",host:"Smash",questions:[
+{q:"Three committee members need to edit the same spreadsheet. What is the best approach?",a:["Email three separate copies","Work from one shared file in Teams","Save it only on one person’s computer","Print it and make handwritten changes"],correct:1,why:"One shared file reduces duplicate versions and keeps the current work in one place."},
+{q:"A draft procedure is not ready for the committee. Where should you work on it first?",a:["Your KPC OneDrive","The public website","A personal social media account","The official minutes folder"],correct:0,why:"OneDrive is appropriate for an individual early draft. Move it to the shared workspace when it becomes committee work."},
+{q:"Why should an official committee document not remain only in one volunteer’s OneDrive?",a:["The font may change","Others may lose access when the role changes","It cannot contain numbers","OneDrive does not save files"],correct:1,why:"Shared KPC records need continuity beyond any one volunteer or role."},
+{q:"You need to send someone the latest shared document. What is usually best?",a:["Send a link to the shared file","Attach a new copy every time","Take a picture of the screen","Copy it into a personal account"],correct:0,why:"A link points people to the current shared version instead of creating more copies."},
+{q:"You receive a Teams meeting invitation in Outlook. Where can you join?",a:["From the invitation or Teams calendar","Only from SharePoint","Only from OneDrive","Only from Word"],correct:0,why:"Outlook and Teams work together, so the meeting can be joined from the invitation or Teams calendar."},
+{q:"A volunteer asks for your password so they can finish a task. What should you do?",a:["Share it for one hour","Decline and help them get proper access","Write it on paper","Change it to an easier password"],correct:1,why:"Passwords and accounts are individual. Access should be granted to the person, not borrowed through another account."},
+{q:"Where should approved policies and lasting KPC records normally live?",a:["An approved shared SharePoint or Teams location","Only in personal email","Only on a home computer","In an unsent draft"],correct:0,why:"Official information belongs in an approved shared location that remains available as volunteers change."},
+{q:"A Microsoft video looks slightly different from the KPC screen. What should you do?",a:["Assume the entire lesson is wrong","Use the KPC explanation and screenshots as the primary guide","Delete your account","Stop using Microsoft 365"],correct:1,why:"Microsoft interfaces change. KPC-specific guidance will show how the club has configured the tools."}
+]}}
+;
 
-function renderLessons() {
-  const query = search.value.trim().toLowerCase();
-  const matches = lessons.filter((lesson) => {
-    const categoryMatch = activeFilter === "all" || lesson.category === activeFilter;
-    const textMatch = `${lesson.title} ${lesson.summary} ${lesson.category}`.toLowerCase().includes(query);
-    return categoryMatch && textMatch;
-  });
+const topicGrid=document.querySelector("#topicGrid");
+const topicDialog=document.querySelector("#topicDialog");
+const topicContent=document.querySelector("#topicContent");
+const quizDialog=document.querySelector("#quizDialog");
+const quizContent=document.querySelector("#quizContent");
 
-  grid.innerHTML = matches.map((lesson) => `
-    <article class="lesson-card">
-      <span class="tag">${lesson.category}</span>
-      <h3>${lesson.title}</h3>
-      <p>${lesson.summary}</p>
-      <div class="meta"><span>${lesson.time}</span><span>${lesson.level}</span></div>
-      <button type="button" data-lesson="${lesson.id}">Open Kitchen Talk</button>
-    </article>
-  `).join("");
+function renderTopics(){topicGrid.innerHTML=topics.map((t,i)=>`<button class="topic-card" data-topic="${t.id}"><span class="topic-number">${String(i+1).padStart(2,"0")}</span><h3>${t.title}</h3><p>${t.summary}</p></button>`).join("")}
+function openTopic(id){const t=topics.find(x=>x.id===id);if(!t)return;topicContent.innerHTML=`<p class="eyebrow">Kitchen Talk preview</p><h2>${t.title}</h2><p>${t.summary}</p><ul class="topic-points">${t.points.map(p=>`<li>${p}</li>`).join("")}</ul><a class="button dark" href="${t.resource}" target="_blank" rel="noopener noreferrer">Optional Microsoft resource</a>`;topicDialog.showModal()}
 
-  noResults.hidden = matches.length > 0;
-}
+topicGrid.addEventListener("click",e=>{const b=e.target.closest("[data-topic]");if(b)openTopic(b.dataset.topic)});
+document.querySelector("[data-close-topic]").addEventListener("click",()=>topicDialog.close());
+topicDialog.addEventListener("click",e=>{if(e.target===topicDialog)topicDialog.close()});
 
-function openLesson(id) {
-  const lesson = lessons.find((item) => item.id === id);
-  if (!lesson) return;
+let quizState=null;
+function startQuiz(type){quizState={type,index:0,score:0,answered:false};renderQuestion();quizDialog.showModal()}
+function renderQuestion(){const quiz=quizzes[quizState.type];const item=quiz.questions[quizState.index];const pct=(quizState.index/quiz.questions.length)*100;quizContent.innerHTML=`<div class="quiz-top"><span>${quiz.host} asks</span><span>Question ${quizState.index+1} of ${quiz.questions.length}</span></div><div class="progress"><span style="width:${pct}%"></span></div><p class="eyebrow">${quiz.name}</p><p class="question">${item.q}</p><div class="answers">${item.a.map((answer,i)=>`<button class="answer" data-answer="${i}">${answer}</button>`).join("")}</div><div id="feedback"></div>`}
+function chooseAnswer(index){if(quizState.answered)return;quizState.answered=true;const quiz=quizzes[quizState.type];const item=quiz.questions[quizState.index];const buttons=[...quizContent.querySelectorAll(".answer")];buttons.forEach((b,i)=>{b.disabled=true;if(i===item.correct)b.classList.add("correct");if(i===index&&i!==item.correct)b.classList.add("incorrect")});const good=index===item.correct;if(good)quizState.score++;document.querySelector("#feedback").innerHTML=`<div class="feedback"><strong>${good?"Nice rally!":"Good try."}</strong><p>${item.why}</p></div><div class="next-row"><button class="button dark" data-next>${quizState.index+1===quiz.questions.length?"See my result":"Next question"}</button></div>`}
+function nextQuestion(){const quiz=quizzes[quizState.type];quizState.index++;quizState.answered=false;if(quizState.index>=quiz.questions.length){renderResult();return}renderQuestion()}
+function renderResult(){const quiz=quizzes[quizState.type];const ratio=quizState.score/quiz.questions.length;let message=ratio>=.875?"You are ready to help lead the rally.":ratio>=.625?"You have a strong start. A few Kitchen Talks will fill the gaps.":"This is exactly what Kitchen Talks are for. Start with the readiness topics and play again later.";quizContent.innerHTML=`<p class="eyebrow">${quiz.name} complete</p><h2>${quizState.type==="erne"?"Warm-up finished":"Challenge finished"}</h2><div class="score">${quizState.score}/${quiz.questions.length}</div><p>${message}</p><p>Your result stays on this device only and disappears when you close the game.</p><div class="actions"><button class="button dark" data-replay>Play again</button><button class="button outline" data-close-result>Back to Kitchen Talks</button></div>`}
 
-  dialogContent.innerHTML = `
-    <p class="eyebrow">${lesson.category} · ${lesson.time}</p>
-    <h2>${lesson.title}</h2>
-    <p class="lesson-summary">${lesson.summary}</p>
-    <h3>KPC quick steps</h3>
-    <ol>${lesson.steps.map((step) => `<li>${step}</li>`).join("")}</ol>
-    <h3>Try it yourself</h3>
-    <p>${lesson.practice}</p>
-    <div class="resource-actions">
-      <a class="microsoft" href="${lesson.resourceUrl}" target="_blank" rel="noopener noreferrer">Watch or read on Microsoft</a>
-      <a class="practice" href="#lessons" data-close-dialog>Back to lessons</a>
-    </div>
-  `;
-  dialog.showModal();
-}
-
-filterButtons.addEventListener("click", (event) => {
-  const button = event.target.closest("button[data-filter]");
-  if (!button) return;
-  activeFilter = button.dataset.filter;
-  document.querySelectorAll(".filter").forEach((item) => item.classList.toggle("active", item === button));
-  renderLessons();
-});
-
-search.addEventListener("input", renderLessons);
-grid.addEventListener("click", (event) => {
-  const button = event.target.closest("button[data-lesson]");
-  if (button) openLesson(button.dataset.lesson);
-});
-closeDialog.addEventListener("click", () => dialog.close());
-dialog.addEventListener("click", (event) => {
-  if (event.target === dialog || event.target.closest("[data-close-dialog]")) dialog.close();
-});
-
-renderLessons();
+document.addEventListener("click",e=>{const start=e.target.closest("[data-start-quiz]");if(start)startQuiz(start.dataset.startQuiz);const answer=e.target.closest("[data-answer]");if(answer)chooseAnswer(Number(answer.dataset.answer));if(e.target.closest("[data-next]"))nextQuestion();if(e.target.closest("[data-replay]"))startQuiz(quizState.type);if(e.target.closest("[data-close-result]"))quizDialog.close()});
+document.querySelector("[data-close-quiz]").addEventListener("click",()=>quizDialog.close());
+quizDialog.addEventListener("click",e=>{if(e.target===quizDialog)quizDialog.close()});
+renderTopics();
