@@ -33,7 +33,7 @@ const topicContent=document.querySelector("#topicContent");
 const quizDialog=document.querySelector("#quizDialog");
 const quizContent=document.querySelector("#quizContent");
 
-function renderTopics(){topicGrid.innerHTML=topics.map(t=>`<button class="topic-card" data-topic="${t.id}"><span class="topic-number">${String(t.number).padStart(2,"0")}</span><h3>${t.title}</h3><p>${t.summary}</p><span class="card-link">Open KitchenTalk</span></button>`).join("")}
+function renderTopics(){topicGrid.innerHTML=topics.map(t=>`<button class="topic-card" data-topic="${t.id}" aria-label="Open ${t.title}"><h3>${t.title}</h3><p>${t.summary}</p></button>`).join("")}
 function openTopic(id){const t=topics.find(x=>x.id===id);if(!t)return;topicContent.innerHTML=`<p class="eyebrow">M365 KitchenTalk #${t.number}</p><h2>${t.title}</h2><div class="full-talk">${t.body.map(p=>`<p>${p}</p>`).join("")}</div><div class="memory-hook"><strong>Memory hook</strong><p>${t.memory}</p></div><div class="actions">${t.video?`<a class="button dark" href="${t.video}" target="_blank" rel="noopener noreferrer">Watch a short video</a>`:`<button class="button outline" disabled title="Video will be added after it is reviewed">Video coming soon</button>`}</div>`;topicDialog.showModal()}
 
 document.querySelector("[data-close-topic]").addEventListener("click",()=>topicDialog.close());
