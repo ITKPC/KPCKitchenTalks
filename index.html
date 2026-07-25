@@ -3,88 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Short Microsoft 365 lessons for KPC volunteers, committee members and board members.">
+  <meta name="description" content="KPC Kitchen Talks prepares volunteers for Microsoft 365 with short lessons and games.">
   <title>KPC Kitchen Talks</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="KPC Kitchen Talks home">
-      <div class="logo-placeholder" aria-hidden="true">KPC</div>
-      <div>
-        <p class="eyebrow">Kamloops Pickleball Club</p>
-        <h1>KPC Kitchen Talks</h1>
-      </div>
-    </a>
-    <a class="header-link" href="#lessons">Browse lessons</a>
-  </header>
+<header class="site-header">
+  <a class="brand" href="#top"><span class="logo-mark">KPC</span><span class="divider"></span><strong>KPC Kitchen Talks</strong></a>
+  <nav><a href="#coming">What is coming</a><a href="#games">Play a game</a></nav>
+</header>
+<main id="top">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">What is coming — and why</p>
+      <h1>A simpler way for KPC volunteers to work together.</h1>
+      <p class="lead">KPC is preparing to move to Microsoft 365. Kitchen Talks will explain what is coming, why the change matters and what you will need to know before launch.</p>
+      <p><strong>You do not need to learn everything now.</strong> Short, practical help will be available whenever you need it.</p>
+      <div class="actions"><a class="button dark" href="#coming">See what is coming</a><a class="button outline" href="#games">Try a knowledge game</a></div>
+    </div>
+    <aside class="host-card erne"><span class="host-name">ERNE</span><strong>I’ll help with the basics.</strong></aside>
+  </section>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Microsoft 365 learning hub</p>
-        <h2>Small lessons to help KPC volunteers work with confidence.</h2>
-        <p>Learn the everyday tasks you need in Teams, Outlook, SharePoint and OneDrive. Read the quick steps, watch an official Microsoft video, or do both.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#start">Start here</a>
-          <a class="button secondary" href="#lessons">Find a lesson</a>
-        </div>
-      </div>
-      <aside class="hero-card" aria-label="How Kitchen Talks work">
-        <span class="step-number">1</span><p>Choose one practical topic.</p>
-        <span class="step-number">2</span><p>Read the short KPC explanation.</p>
-        <span class="step-number">3</span><p>Watch the optional Microsoft video.</p>
-        <span class="step-number">4</span><p>Try the task yourself.</p>
-      </aside>
-    </section>
+  <section id="coming" class="section white">
+    <header class="section-heading"><p class="eyebrow">Microsoft 365 readiness</p><h2>Choose what you want to understand.</h2><p>These are introductions, not technical training.</p></header>
+    <div id="topicGrid" class="topic-grid"></div>
+  </section>
 
-    <section id="start" class="section start-section">
-      <div class="section-heading">
-        <p class="eyebrow">New to KPC Microsoft 365?</p>
-        <h2>Start with these four ideas</h2>
-      </div>
-      <div class="tool-grid">
-        <article class="tool-card teams"><h3>Teams</h3><p>Your main workspace for committee conversations, meetings and shared files.</p></article>
-        <article class="tool-card outlook"><h3>Outlook</h3><p>Your KPC email and calendar, including meeting invitations.</p></article>
-        <article class="tool-card sharepoint"><h3>SharePoint</h3><p>KPC’s shared information centre and the storage behind Teams files.</p></article>
-        <article class="tool-card onedrive"><h3>OneDrive</h3><p>Your individual work area for private notes, drafts and temporary files.</p></article>
-      </div>
-    </section>
+  <section id="games" class="section">
+    <header class="section-heading centre"><p class="eyebrow">Learn by playing</p><h2>See what you already know.</h2><p>No typing, no pressure and no saved scores.</p></header>
+    <div class="game-grid">
+      <article class="game-card erne-game"><div class="character"><span>ERNE</span></div><div><small>Warm-up level</small><h3>Play with Erne</h3><p>Friendly questions about what is coming and the basic role of each Microsoft tool.</p><button class="button dark" data-start-quiz="erne">Start Erne’s Warm-Up</button></div></article>
+      <article class="game-card smash-game"><div class="character"><span>SMASH</span></div><div><small>Level-up challenge</small><h3>Take the Smash Challenge</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Start the Smash Challenge</button></div></article>
+    </div>
+  </section>
 
-    <section id="lessons" class="section lessons-section">
-      <div class="section-heading row-heading">
-        <div>
-          <p class="eyebrow">Kitchen Talks</p>
-          <h2>What do you need help with?</h2>
-        </div>
-        <label class="search-box">
-          <span class="sr-only">Search lessons</span>
-          <input id="lessonSearch" type="search" placeholder="Search lessons">
-        </label>
-      </div>
-      <div id="filterButtons" class="filters" aria-label="Filter lessons">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="Getting Started">Getting started</button>
-        <button class="filter" data-filter="Teams">Teams</button>
-        <button class="filter" data-filter="Outlook">Outlook</button>
-        <button class="filter" data-filter="SharePoint">SharePoint</button>
-        <button class="filter" data-filter="OneDrive">OneDrive</button>
-      </div>
-      <div id="lessonGrid" class="lesson-grid"></div>
-      <p id="noResults" class="no-results" hidden>No lessons match that search.</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>KPC Kitchen Talks · Kamloops Pickleball Club</p>
-    <p>Official Microsoft resources open in a new browser tab.</p>
-  </footer>
-
-  <dialog id="lessonDialog" class="lesson-dialog">
-    <button id="closeDialog" class="dialog-close" aria-label="Close lesson">×</button>
-    <div id="dialogContent"></div>
-  </dialog>
-
-  <script src="app.js"></script>
+  <section class="section future white"><div><p class="eyebrow">After launch</p><h2>Learn on demand.</h2><p>When a real task comes up, choose it and follow a short lesson with pictures, optional videos and a quick practice activity.</p></div><div class="future-grid"><span>Short explanations</span><span>Step-by-step pictures</span><span>Optional videos</span><span>Quick practice</span></div></section>
+</main>
+<footer><span>KPC Kitchen Talks · Kamloops Pickleball Club</span><span>No sign-in. No personal information. Scores are not saved.</span></footer>
+<dialog id="topicDialog"><button class="close" data-close-topic>×</button><div id="topicContent"></div></dialog>
+<dialog id="quizDialog"><button class="close" data-close-quiz>×</button><div id="quizContent"></div></dialog>
+<script src="app.js"></script>
 </body>
 </html>
