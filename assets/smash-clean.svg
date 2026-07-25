@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" role="img" aria-labelledby="title desc">
+  <title id="title">Smash pickleball character</title>
+  <desc id="desc">A clean blue and yellow pickleball player illustration holding a paddle.</desc>
+  <defs>
+    <linearGradient id="shirt" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#67b7ff"/><stop offset="1" stop-color="#1e5fb8"/></linearGradient>
+    <linearGradient id="skirt" x1="0" x2="1"><stop offset="0" stop-color="#f7e95c"/><stop offset="1" stop-color="#e6c62b"/></linearGradient>
+  </defs>
+  <g stroke="#07184d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="120" cy="54" r="34" fill="#f4c7a1"/>
+    <path d="M89 50c2-30 22-43 45-36 17 5 25 19 23 39-11-6-18-16-22-28-8 17-24 27-46 25z" fill="#f3d95b"/>
+    <path d="M101 91c10 10 28 10 38 0l9 62h-57z" fill="url(#shirt)"/>
+    <path d="M91 153h58l13 49H78z" fill="url(#skirt)"/>
+    <path d="M99 202 86 273" fill="none"/>
+    <path d="M140 202 154 273" fill="none"/>
+    <path d="M85 273h26" fill="none"/>
+    <path d="M142 273h27" fill="none"/>
+    <path d="M94 112 57 145" fill="none"/>
+    <path d="M145 111 177 137" fill="none"/>
+    <path d="M56 145 31 159" fill="none"/>
+    <path d="M177 137 199 119" fill="none"/>
+    <ellipse cx="205" cy="105" rx="24" ry="30" fill="#3d8fe0" transform="rotate(20 205 105)"/>
+    <path d="M192 126 176 151" fill="none"/>
+    <circle cx="34" cy="160" r="9" fill="#f7e95c"/>
+    <circle cx="112" cy="52" r="2.5" fill="#07184d" stroke="none"/>
+    <circle cx="131" cy="52" r="2.5" fill="#07184d" stroke="none"/>
+    <path d="M113 68c6 5 12 5 18 0" fill="none" stroke-width="4"/>
+  </g>
+</svg>
