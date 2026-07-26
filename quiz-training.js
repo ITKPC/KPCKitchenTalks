@@ -1,54 +1,35 @@
-const quizTrainingMap={
-  erne:["email","teams","microsoft-365","onedrive","personal-access","security","sharepoint","microsoft-365"],
-  smash:["teams","onedrive","sharepoint","sharing","meetings","personal-access","sharepoint","kpc-guidance"]
-};
+quizzes.erne.name="Getting Started Game";
+quizzes.erne.host="Getting Started";
+quizzes.smash.name="Working in KPC Game";
+quizzes.smash.host="Working in KPC";
 
-const trainingLabels={
-  "microsoft-365":"Microsoft 365 Overview",
-  email:"KPC Email and Outlook",
-  teams:"Teams and Committee Work",
-  onedrive:"OneDrive",
-  sharepoint:"SharePoint and Official Records",
-  "personal-access":"Personal Sign-Ins and Access",
-  security:"Security and Sign-In Approvals",
-  sharing:"Sharing Files and Links",
-  meetings:"Meetings in Outlook and Teams",
-  "kpc-guidance":"KPC-Specific Guidance"
+const quizRecommendations={
+  erne:[
+    {questionId:"email-calendar-tool",pathId:"email-meetings",lessonIds:["open-outlook","outlook-calendar"],kitchenTalkId:"talk4"},
+    {questionId:"committee-workspace",pathId:"committee-work",lessonIds:["teams-at-kpc","open-committee-team"],kitchenTalkId:"talk2"},
+    {questionId:"learn-what-you-need",pathId:"start-here",lessonIds:["kpc-use-m365","get-help"],kitchenTalkId:"talk1"},
+    {questionId:"onedrive-purpose",pathId:"files-what-goes-where",lessonIds:["onedrive-personal-files","teams-shared-work"],kitchenTalkId:"talk2"},
+    {questionId:"individual-account",pathId:"staying-safe",lessonIds:["individual-accounts","no-shared-passwords"],kitchenTalkId:"talk3"},
+    {questionId:"unexpected-approval",pathId:"staying-safe",lessonIds:["suspicious-sign-ins","what-mfa-does"],kitchenTalkId:"talk3"},
+    {questionId:"sharepoint-purpose",pathId:"files-what-goes-where",lessonIds:["sharepoint-lasting-info","official-records"],kitchenTalkId:"talk2"},
+    {questionId:"kitchentalk-purpose",pathId:"start-here",lessonIds:["kpc-use-m365","get-help"],kitchenTalkId:"talk1"}
+  ],
+  smash:[
+    {questionId:"shared-spreadsheet",pathId:"committee-work",lessonIds:["edit-shared-document","avoid-duplicates"],kitchenTalkId:"talk2"},
+    {questionId:"personal-draft",pathId:"files-what-goes-where",lessonIds:["onedrive-personal-files","move-draft"],kitchenTalkId:"talk2"},
+    {questionId:"continuity",pathId:"files-what-goes-where",lessonIds:["official-records","find-current-version"],kitchenTalkId:"talk2"},
+    {questionId:"send-current-file",pathId:"committee-work",lessonIds:["send-a-link","avoid-duplicates"],kitchenTalkId:"talk2"},
+    {questionId:"join-meeting",pathId:"email-meetings",lessonIds:["accept-invitation","join-teams-meeting"],kitchenTalkId:"talk4"},
+    {questionId:"password-request",pathId:"staying-safe",lessonIds:["no-shared-passwords","individual-accounts"],kitchenTalkId:"talk3"},
+    {questionId:"official-records",pathId:"files-what-goes-where",lessonIds:["sharepoint-lasting-info","official-records"],kitchenTalkId:"talk2"},
+    {questionId:"kpc-guidance",pathId:"start-here",lessonIds:["get-help","kpc-use-m365"],kitchenTalkId:"talk1"}
+  ]
 };
 
 function readMissedTraining(){try{return JSON.parse(sessionStorage.getItem("kpcMissedTraining")||"[]")}catch{return []}}
-function saveMissedTraining(items){try{sessionStorage.setItem("kpcMissedTraining",JSON.stringify([...new Set(items)]))}catch{}}
+function saveMissedTraining(items){try{sessionStorage.setItem("kpcMissedTraining",JSON.stringify(items))}catch{}}
 
-function openTopic(id){
-  const t=topics.find(x=>x.id===id);
-  if(!t)return;
-  topicContent.innerHTML=`<p class="eyebrow">M365 KitchenTalk #${t.number}</p><h2>${t.title}</h2><div class="full-talk">${t.body.map(p=>`<p>${p}</p>`).join("")}</div><div class="memory-hook"><strong>Less Computer, More Pickleball</strong><p>${t.memory}</p></div>`;
-  topicDialog.showModal();
-}
-
-function startQuiz(type){quizState={type,index:0,score:0,answered:false,missed:[]};renderQuestion();quizDialog.showModal()}
-
-function chooseAnswer(index){
-  if(quizState.answered)return;
-  quizState.answered=true;
-  const quiz=quizzes[quizState.type];
-  const item=quiz.questions[quizState.index];
-  const buttons=[...quizContent.querySelectorAll(".answer")];
-  buttons.forEach((button,i)=>{button.disabled=true;if(i===item.correct)button.classList.add("correct");if(i===index&&i!==item.correct)button.classList.add("incorrect")});
-  const good=index===item.correct;
-  if(good){quizState.score++}else{
-    const trainingId=quizTrainingMap[quizState.type][quizState.index];
-    if(trainingId)quizState.missed.push(trainingId);
-  }
-  document.querySelector("#feedback").innerHTML=`<div class="feedback"><strong>${good?"Nice rally!":"Good try."}</strong><p>${item.why}</p></div><div class="next-row"><button class="button dark" data-next>${quizState.index+1===quiz.questions.length?"See my result":"Next question"}</button></div>`;
-}
-
-function renderResult(){
-  const quiz=quizzes[quizState.type];
-  const allCorrect=quizState.score===quiz.questions.length;
-  const accumulated=[...new Set([...readMissedTraining(),...quizState.missed])];
-  saveMissedTraining(accumulated);
-  const links=accumulated.map(id=>`<a class="training-link" href="learn.html#${id}">${trainingLabels[id]}</a>`).join("");
-  const levelLabel=quizState.type==="erne"?"Beginner":"Intermediate";
-  quizContent.innerHTML=`<p class="eyebrow">${levelLabel} complete</p><h2>${levelLabel} finished</h2><div class="score">${quizState.score}/${quiz.questions.length}</div>${allCorrect?`<div class="perfect-result"><h3>Kewl — perfect game.</h3><p>You got every question right.</p></div>`:`<div class="training-result"><h3>Your recommended training</h3><p>These topics match the questions that need another look.</p><div class="training-links">${links}</div></div>`}<div class="actions"><button class="button dark" data-replay>Play again</button><button class="button outline" data-close-result>Back to KitchenTalks</button></div>`;
-}
+function openTopic(id){const t=topics.find(item=>item.id===id);if(!t)return;topicContent.innerHTML=`<p class="eyebrow">M365 KitchenTalk #${t.number}</p><h2>${t.title}</h2><div class="full-talk">${t.body.map(p=>`<p>${p}</p>`).join("")}</div><div class="memory-hook"><strong>Less Computer, More Pickleball</strong><p>${t.memory}</p></div>`;topicDialog.showModal()}
+function startQuiz(type){quizState={type,index:0,score:0,answered:false,missed:[],correct:[]};renderQuestion();quizDialog.showModal()}
+function chooseAnswer(index){if(quizState.answered)return;quizState.answered=true;const quiz=quizzes[quizState.type];const item=quiz.questions[quizState.index];const buttons=[...quizContent.querySelectorAll(".answer")];buttons.forEach((button,i)=>{button.disabled=true;if(i===item.correct)button.classList.add("correct");if(i===index&&i!==item.correct)button.classList.add("incorrect")});const good=index===item.correct;const recommendation=quizRecommendations[quizState.type][quizState.index];if(good){quizState.score++;quizState.correct.push(recommendation)}else{quizState.missed.push(recommendation)}document.querySelector("#feedback").innerHTML=`<div class="feedback"><strong>${good?"You found the right play.":"That one can be confusing."}</strong><p>${item.why}</p>${good?"":`<p>This training path may help.</p>`}</div><div class="next-row"><button class="button dark" data-next>${quizState.index+1===quiz.questions.length?"See my suggestions":"Next situation"}</button></div>`}
+function renderResult(){const quiz=quizzes[quizState.type];const previous=readMissedTraining();const missed=[...previous,...quizState.missed].filter(Boolean);saveMissedTraining(missed);const pathCounts={};missed.forEach(item=>pathCounts[item.pathId]=(pathCounts[item.pathId]||0)+1);const recommendedPathId=Object.keys(pathCounts).sort((a,b)=>pathCounts[b]-pathCounts[a])[0];const uniqueLessons=[...new Set(missed.flatMap(item=>item.lessonIds||[]))].slice(0,6);const pathTitles={"start-here":"Start Here","email-meetings":"Email and Meetings","committee-work":"Working With Your Committee","files-what-goes-where":"Files — What Goes Where?","staying-safe":"Staying Safe"};const strengths=[...new Set(quizState.correct.map(item=>pathTitles[item.pathId]))].slice(0,3);const lessonTitles={"open-outlook":"Open Outlook","outlook-calendar":"Use the Outlook calendar","teams-at-kpc":"What Teams will do for KPC","open-committee-team":"Open your committee Team","kpc-use-m365":"How KPC will use Microsoft 365","get-help":"Know where to get help","onedrive-personal-files":"OneDrive for personal KPC working files","teams-shared-work":"Teams for shared committee work","individual-accounts":"Why everyone has an individual account","no-shared-passwords":"Why passwords must not be shared","suspicious-sign-ins":"Recognize suspicious sign-in requests","what-mfa-does":"What multifactor authentication does","sharepoint-lasting-info":"SharePoint for organized and lasting KPC information","official-records":"Know where official KPC records belong","edit-shared-document":"Open and edit a shared document","avoid-duplicates":"Avoid duplicate file copies","move-draft":"Move a personal draft into a shared location","find-current-version":"Find the current version","send-a-link":"Send a link instead of an attachment","accept-invitation":"Accept a meeting invitation","join-teams-meeting":"Join a Teams meeting"};const allCorrect=quizState.missed.length===0;quizContent.innerHTML=`<p class="eyebrow">${quiz.name}</p><h2>${allCorrect?"You found every right play.":"Your next useful training"}</h2>${strengths.length?`<div class="result-section"><h3>Strengths</h3><p>${strengths.join(" · ")}</p></div>`:""}${allCorrect?`<div class="perfect-result"><p>You are ready to use these ideas in your KPC work.</p></div>`:`<div class="training-result"><h3>Areas worth reviewing</h3><div class="training-links">${uniqueLessons.map(id=>`<a class="training-link" href="learn.html#lesson/${id}">${lessonTitles[id]||id}</a>`).join("")}</div><h3>Recommended learning path</h3><a class="button dark" href="learn.html#path/${recommendedPathId}">Open ${pathTitles[recommendedPathId]}</a></div>`}<details class="score-details"><summary>See game details</summary><p>${quizState.score} of ${quiz.questions.length} situations matched the KPC approach.</p></details><div class="actions"><button class="button outline" data-replay>Play again</button><button class="button outline" data-close-result>Back to KitchenTalks</button></div>`}
