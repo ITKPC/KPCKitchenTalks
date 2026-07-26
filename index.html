@@ -3,27 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KPC KitchenTalks prepares volunteers for Microsoft 365 with short explanations and games.">
+  <meta name="description" content="KPC KitchenTalks helps volunteers understand the Microsoft 365 change, learn practical tasks and find useful training.">
   <title>KPC KitchenTalks</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="header-fix.css">
   <link rel="stylesheet" href="icon-styles.css">
   <link rel="stylesheet" href="quiz-training.css">
+  <link rel="stylesheet" href="home-redesign.css">
 </head>
 <body>
 <header class="site-header">
   <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC KitchenTalks</strong></a>
-  <nav><a class="active" href="#talks">KitchenTalks</a><a href="learn.html">Learn</a><a href="#games">Games</a></nav>
+  <nav aria-label="Main navigation"><a class="active" href="#talks">KitchenTalks</a><a href="learn.html">Learn</a><a href="#games">Games</a></nav>
 </header>
 <main id="top">
   <section class="hero compact-hero">
-    <div class="hero-copy"><p class="eyebrow">Microsoft 365 is coming to KPC</p><h1>A simpler way for KPC volunteers to work together.</h1><p class="lead">KitchenTalks explain what is coming, why KPC is making the change, and what it means for volunteers.</p><div class="actions"><a class="button dark" href="#talks">Browse KitchenTalks</a><a class="button outline" href="learn.html">Explore Microsoft 365 Learning</a></div></div>
-    <aside class="erne-welcome"><img src="assets/pickleball-player.svg" alt="Friendly pickleball player"><p><strong>Start anywhere.</strong><br>You do not need to learn everything at once.</p></aside>
+    <div class="hero-copy"><p class="eyebrow">Microsoft 365 is coming to KPC</p><h1>Practical help for the KPC tasks you need to do.</h1><p class="lead">Understand what is changing, learn one practical task, or check what you know.</p><div class="actions"><a class="button dark" href="learn.html#path/start-here">Start Here</a><a class="button outline" href="#choices">See my choices</a></div></div>
+    <aside class="erne-welcome"><img src="assets/pickleball-player.svg" alt="KPC pickleball character welcoming a volunteer"><p><strong>Start anywhere.</strong><br>You do not need to learn everything at once.</p></aside>
   </section>
-  <section id="talks" class="section white compact-section"><header class="section-heading"><p class="eyebrow">KitchenTalks</p><h2>Short explanations about the change.</h2><p>Select a KitchenTalk to open the complete explanation and Less Computer, More Pickleball reminder.</p></header><div id="topicGrid" class="topic-grid compact-grid"></div></section>
-  <section id="games" class="section compact-section"><header class="section-heading centre"><p class="eyebrow">Test what you already know</p><h2>Learn by playing.</h2><p>No typing and no pressure.</p></header><div class="game-grid compact-games"><article class="game-card erne-game"><div class="character"><img src="assets/pickleball-player.svg" alt="Pickleball player"></div><div><small>Beginner</small><h3>Beginner</h3><p>Friendly questions about what is coming and the main Microsoft tools.</p><button class="button dark" data-start-quiz="erne">Start Beginner</button></div></article><article class="game-card smash-game"><div class="character"><img src="assets/pickleball-player.svg" alt="Pickleball player"></div><div><small>Intermediate</small><h3>Intermediate</h3><p>Realistic KPC situations about communication, files and security.</p><button class="button light" data-start-quiz="smash">Start Intermediate</button></div></article></div></section>
-  <section id="featured" class="section white featured"><div><p class="eyebrow">Featured KitchenTalk</p><h2>What the Board Said Yes To</h2><p>Why KPC is moving from Google Workspace to Microsoft 365 and what the change is intended to accomplish.</p></div><button class="button outline" data-topic="talk1">Open KitchenTalk #1</button></section>
-  <section class="how-strip"><span>Choose a KitchenTalk</span><b>→</b><span>Read the full explanation</span><b>→</b><span>Spend less time on computers</span></section>
+
+  <section id="choices" class="section white home-choices"><header class="section-heading centre"><p class="eyebrow">What are you trying to do today?</p><h2>Choose one small next step.</h2></header><div class="choice-grid">
+    <article><span aria-hidden="true">01</span><h3>Understand the change</h3><p>Learn what is changing at KPC and why.</p><a class="button outline" href="#talks">Browse KitchenTalks</a></article>
+    <article><span aria-hidden="true">02</span><h3>Learn a practical task</h3><p>Find short training for email, meetings, committee work and shared files.</p><a class="button dark" href="learn.html">Open Learn</a></article>
+    <article><span aria-hidden="true">03</span><h3>Check what you know</h3><p>Try everyday situations and receive useful training suggestions.</p><a class="button outline" href="#games">Open Games</a></article>
+  </div></section>
+
+  <section id="talks" class="section white compact-section"><header class="section-heading"><p class="eyebrow">KitchenTalks</p><h2>Understand what is changing at KPC and why.</h2><p>Short explanations about accounts, email, Teams, shared files and the transition.</p></header><div id="topicGrid" class="topic-grid compact-grid"></div></section>
+
+  <section id="games" class="section compact-section"><header class="section-heading centre"><p class="eyebrow">Games</p><h2>Check what you know and find the training that will help.</h2><p>These are friendly practice activities, not formal tests.</p></header><div class="game-grid compact-games">
+    <article class="game-card erne-game"><div class="character"><img src="assets/pickleball-player.svg" alt="KPC pickleball character preparing to serve"></div><div><small>Getting Started</small><h3>Getting Started Game</h3><p>Try a few everyday situations and see which training could help.</p><button class="button dark" data-start-quiz="erne" aria-label="Open the Getting Started Game">Open Getting Started Game</button></div></article>
+    <article class="game-card smash-game"><div class="character"><img src="assets/smash-clean.svg" alt="KPC pickleball character working through a club situation"></div><div><small>Working in KPC</small><h3>Working in KPC Game</h3><p>Practise decisions about email, meetings, Teams and shared files.</p><button class="button light" data-start-quiz="smash" aria-label="Open the Working in KPC Game">Open Working in KPC Game</button></div></article>
+  </div></section>
+
+  <section id="featured" class="section white featured"><div><p class="eyebrow">Featured KitchenTalk</p><h2>What the Board Said Yes To</h2><p>Why KPC is moving from Google Workspace to Microsoft 365 and what the change is intended to accomplish.</p></div><button class="button outline" data-topic="talk1">Open KitchenTalk</button></section>
+  <section class="section start-feature"><div><p class="eyebrow">Featured learning path</p><h2>Start Here</h2><p>Sign in, find your Microsoft 365 apps and protect your KPC account.</p><p><strong>Outcome:</strong> I can safely access my KPC account and find the tools I need.</p></div><a class="button dark" href="learn.html#path/start-here">Start this path</a></section>
+  <section class="how-strip"><span>Need help?</span><b>→</b><span>Choose the task you are trying to do</span><b>→</b><span>Follow one short lesson</span></section>
 </main>
 <footer><span>KPC KitchenTalks · Kamloops Pickleball Club</span><span>No sign-in. No personal information.</span></footer>
 <dialog id="topicDialog"><button class="close" data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
