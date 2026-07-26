@@ -3,34 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Learn the Microsoft 365 tools KPC volunteers will use.">
-  <title>Learn Microsoft 365 | KPC KitchenTalks</title>
+  <meta name="description" content="Practical Microsoft 365 learning paths for KPC volunteers.">
+  <title>Learn practical KPC tasks | KPC KitchenTalks</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="header-fix.css">
-  <link rel="stylesheet" href="training-page.css">
+  <link rel="stylesheet" href="learning.css">
 </head>
 <body>
 <header class="site-header">
   <a class="brand" href="index.html"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC KitchenTalks</strong></a>
-  <nav><a href="index.html#talks">KitchenTalks</a><a class="active" href="learn.html">Learn</a><a href="index.html#games">Games</a></nav>
+  <nav aria-label="Main navigation"><a href="index.html#talks">KitchenTalks</a><a class="active" href="learn.html">Learn</a><a href="index.html#games">Games</a></nav>
 </header>
-<main>
-  <section class="page-hero"><p class="eyebrow">Learn at your own pace</p><h1>Microsoft 365 Learning</h1><p>Each topic includes a short KPC explanation and a video slot. Quiz results link directly to the topic that matches the question.</p></section>
-  <section class="section white compact-section"><div class="learning-grid">
-    <article id="microsoft-365" class="learning-card" data-training="microsoft-365"><span>01</span><h2>Microsoft 365 Overview</h2><p>How Outlook, Teams, SharePoint and OneDrive work together for KPC.</p><button class="button dark" data-video="microsoft-365">Watch training video</button></article>
-    <article id="email" class="learning-card" data-training="email"><span>02</span><h2>KPC Email and Outlook</h2><p>Email, calendars, meeting invitations, role addresses and shared mailboxes.</p><button class="button dark" data-video="email">Watch training video</button></article>
-    <article id="teams" class="learning-card" data-training="teams"><span>03</span><h2>Teams and Committee Work</h2><p>Committee conversations, meetings, files and follow-up work in one place.</p><button class="button dark" data-video="teams">Watch training video</button></article>
-    <article id="onedrive" class="learning-card" data-training="onedrive"><span>04</span><h2>OneDrive</h2><p>Your own drafts and working files before they become shared committee work.</p><button class="button dark" data-video="onedrive">Watch training video</button></article>
-    <article id="sharepoint" class="learning-card" data-training="sharepoint"><span>05</span><h2>SharePoint and Official Records</h2><p>Shared KPC information, approved documents and long-term club records.</p><button class="button dark" data-video="sharepoint">Watch training video</button></article>
-    <article id="personal-access" class="learning-card" data-training="personal-access"><span>06</span><h2>Personal Sign-Ins and Access</h2><p>Why every volunteer signs in as themselves and receives access for their role.</p><button class="button dark" data-video="personal-access">Watch training video</button></article>
-    <article id="security" class="learning-card" data-training="security"><span>07</span><h2>Security and Sign-In Approvals</h2><p>Passwords, verification prompts and unexpected sign-in requests.</p><button class="button dark" data-video="security">Watch training video</button></article>
-    <article id="sharing" class="learning-card" data-training="sharing"><span>08</span><h2>Sharing Files and Links</h2><p>How to send the current shared version instead of creating duplicate attachments.</p><button class="button dark" data-video="sharing">Watch training video</button></article>
-    <article id="meetings" class="learning-card" data-training="meetings"><span>09</span><h2>Meetings in Outlook and Teams</h2><p>How invitations, calendars and joining Teams meetings work together.</p><button class="button dark" data-video="meetings">Watch training video</button></article>
-    <article id="kpc-guidance" class="learning-card" data-training="kpc-guidance"><span>10</span><h2>KPC-Specific Guidance</h2><p>What to do when a Microsoft video looks different from the KPC screen.</p><button class="button dark" data-video="kpc-guidance">Watch training video</button></article>
-  </div></section>
+<main id="learningApp" tabindex="-1">
+  <noscript><section class="section white"><h1>JavaScript is required</h1><p>This learning area needs JavaScript to show paths and lessons. KitchenTalks remain available from the home page.</p></section></noscript>
 </main>
-<footer><span>KPC KitchenTalks · Kamloops Pickleball Club</span><span>No sign-in required.</span></footer>
-<dialog id="trainingVideoDialog"><button class="close" data-close-training aria-label="Close">×</button><div id="trainingVideoContent"></div></dialog>
-<script src="training-page.js"></script>
+<footer><span>KPC KitchenTalks · Kamloops Pickleball Club</span><span>Your progress is saved on this device.</span></footer>
+<script src="learning-data.js"></script>
+<script src="learning-app.js"></script>
 </body>
 </html>
