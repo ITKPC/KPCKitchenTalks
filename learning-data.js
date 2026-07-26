@@ -1,229 +1,33 @@
-window.KPCLearning = (() => {
-  const helpContact = {
-    label: "Ask KPC for help",
-    instructions: "Include what you were trying to do, the device you were using, and the exact message you saw. Do not send your password."
-  };
-
-  const learningPaths = [
-    {
-      id: "start-here",
-      title: "Start Here",
-      description: "Sign in, find your Microsoft 365 apps and protect your KPC account.",
-      outcome: "I can safely access my KPC account and find the tools I need.",
-      label: "Recommended for everyone",
-      featured: true,
-      restricted: false,
-      mascot: "assets/mascots/start-here.svg",
-      mascotAlt: "Friendly KPC pickleball mascot welcoming a volunteer.",
-      lessons: ["m365-overview","kpc-use-m365","sign-in-kpc","find-apps","set-up-mfa","unexpected-sign-in","get-help"]
-    },
-    {
-      id: "email-meetings",
-      title: "Email and Meetings",
-      description: "Use KPC email, manage invitations and join online meetings.",
-      outcome: "I can use KPC email, manage invitations and participate in meetings.",
-      featured: false,
-      restricted: false,
-      mascot: "assets/mascots/email-meetings.svg",
-      mascotAlt: "KPC pickleball mascot with an envelope and calendar.",
-      lessons: ["open-outlook","send-reply-email","personal-email","role-addresses","shared-mailboxes","outlook-calendar","accept-invitation","join-teams-meeting","share-screen"]
-    },
-    {
-      id: "committee-work",
-      title: "Working With Your Committee",
-      description: "Find conversations, files and shared work for your KPC committee.",
-      outcome: "I can work with my committee and find the information we share.",
-      featured: true,
-      restricted: false,
-      mascot: "assets/mascots/start-here.svg",
-      mascotAlt: "Friendly KPC pickleball mascot ready to help with committee work.",
-      lessons: ["teams-at-kpc","open-committee-team","channels-conversations","find-committee-files","edit-shared-document","avoid-duplicates","send-a-link","committee-knowledge-check"]
-    },
-    {
-      id: "files-what-goes-where",
-      title: "Files — What Goes Where?",
-      description: "Understand OneDrive, Teams and SharePoint without the technical language.",
-      outcome: "I can decide where a KPC document belongs and find it again later.",
-      featured: false,
-      restricted: false,
-      mascot: "assets/mascots/files.svg",
-      mascotAlt: "KPC pickleball mascot organizing files and a paddle bag.",
-      memoryAid: "OneDrive is your paddle bag. SharePoint is the KPC equipment room.",
-      lessons: ["onedrive-personal-files","teams-shared-work","sharepoint-lasting-info","move-draft","find-current-version","share-file-safely","official-records","links-vs-attachments"]
-    },
-    {
-      id: "staying-safe",
-      title: "Staying Safe",
-      description: "Protect your KPC account, club information and other volunteers.",
-      outcome: "I can recognize common risks and protect KPC information.",
-      featured: false,
-      restricted: false,
-      mascot: "assets/mascots/staying-safe.svg",
-      mascotAlt: "KPC pickleball mascot with a shield and lock.",
-      lessons: ["individual-accounts","no-shared-passwords","what-mfa-does","suspicious-sign-ins","basic-phishing","safe-sharing","protect-information","report-problem"]
-    },
-    {
-      id: "kpc-administration",
-      title: "KPC Administration",
-      description: "Routine Microsoft 365 tasks for authorized KPC administrators.",
-      outcome: "I can complete routine KPC Microsoft 365 administration safely.",
-      label: "For authorized administrators only",
-      featured: false,
-      restricted: true,
-      mascot: "assets/mascots/administration.svg",
-      mascotAlt: "KPC pickleball mascot holding an administration checklist.",
-      lessons: ["add-user","offboard-user","manage-licence","reset-password","committee-access","mailbox-permissions","add-administrator","review-access-changes","admin-continuity"]
-    }
-  ];
-
-  const pathLessonTitles = {
-    "start-here": [
-      ["m365-overview","What Microsoft 365 is"],
-      ["kpc-use-m365","How KPC will use Microsoft 365"],
-      ["sign-in-kpc","Sign in to your KPC account"],
-      ["find-apps","Find your Microsoft 365 apps"],
-      ["set-up-mfa","Set up multifactor authentication"],
-      ["unexpected-sign-in","Respond to an unexpected sign-in request"],
-      ["get-help","Know where to get help"]
-    ],
-    "email-meetings": [
-      ["open-outlook","Open Outlook"],
-      ["send-reply-email","Send and reply to email"],
-      ["personal-email","Understand your personal KPC email address"],
-      ["role-addresses","Understand permanent role addresses"],
-      ["shared-mailboxes","Understand shared and functional mailboxes"],
-      ["outlook-calendar","Use the Outlook calendar"],
-      ["accept-invitation","Accept a meeting invitation"],
-      ["join-teams-meeting","Join a Teams meeting"],
-      ["share-screen","Share your screen"]
-    ],
-    "committee-work": [
-      ["teams-at-kpc","What Teams will do for KPC"],
-      ["open-committee-team","Open your committee Team"],
-      ["channels-conversations","Understand conversations and channels"],
-      ["find-committee-files","Find committee files"],
-      ["edit-shared-document","Open and edit a shared document"],
-      ["avoid-duplicates","Avoid duplicate file copies"],
-      ["send-a-link","Send a link instead of an attachment"],
-      ["committee-knowledge-check","Complete the committee-work knowledge check"]
-    ],
-    "files-what-goes-where": [
-      ["onedrive-personal-files","OneDrive for personal KPC working files"],
-      ["teams-shared-work","Teams for shared committee work"],
-      ["sharepoint-lasting-info","SharePoint for organized and lasting KPC information"],
-      ["move-draft","Move a personal draft into a shared location"],
-      ["find-current-version","Find the current version"],
-      ["share-file-safely","Share a file safely"],
-      ["official-records","Know where official KPC records belong"],
-      ["links-vs-attachments","Understand links compared with attachments"]
-    ],
-    "staying-safe": [
-      ["individual-accounts","Why everyone has an individual account"],
-      ["no-shared-passwords","Why passwords must not be shared"],
-      ["what-mfa-does","What multifactor authentication does"],
-      ["suspicious-sign-ins","Recognize suspicious sign-in requests"],
-      ["basic-phishing","Recognize basic phishing attempts"],
-      ["safe-sharing","Share files safely"],
-      ["protect-information","Protect member and volunteer information"],
-      ["report-problem","Report a problem"]
-    ],
-    "kpc-administration": [
-      ["add-user","Add a user"],
-      ["offboard-user","Remove or offboard a user"],
-      ["manage-licence","Assign or remove a licence"],
-      ["reset-password","Reset a password"],
-      ["committee-access","Manage committee access"],
-      ["mailbox-permissions","Manage shared mailbox permissions"],
-      ["add-administrator","Add another administrator"],
-      ["review-access-changes","Review account and access changes"],
-      ["admin-continuity","Avoid relying on a single administrator"]
-    ]
-  };
-
-  const detailedCommittee = {
-    "teams-at-kpc": {
-      description: "Understand why committee conversations, meetings and shared work will be kept together.",
-      outcome: "I can explain what my committee Team is for.",
-      whyItMatters: "Your committee Team gives volunteers one shared place to find the work instead of searching through separate email chains and attachments.",
-      steps: ["Think of Teams as your committee's shared working area.","Use conversations for updates that belong with committee work.","Use the Files area for documents the committee works on together.","Use Outlook for formal email and messages outside the committee."],
-      practiceTask: "Name one current committee task that would be easier to find if its conversation and file were kept together."
-    },
-    "open-committee-team": {
-      description: "Find the Microsoft Team used by your KPC committee.",
-      outcome: "I can open my committee Team and recognize its main areas.",
-      whyItMatters: "This is the starting point for your committee's conversations, meetings and shared files.",
-      steps: ["Open Microsoft Teams with your KPC account.","Select Teams from the left side.","Find your committee name.","Open the General channel first.","Look for Posts and Files."],
-      practiceTask: "Open your committee Team and locate its Files area."
-    },
-    "channels-conversations": {
-      description: "Keep a reply with the correct committee topic.",
-      outcome: "I can find a channel and reply to the correct conversation.",
-      whyItMatters: "Keeping related replies together makes decisions easier to follow later.",
-      steps: ["Open the correct committee Team.","Choose the channel that matches the work.","Read the original post and existing replies.","Use Reply under that post instead of starting a separate conversation."],
-      practiceTask: "Find one existing conversation and identify where you would reply."
-    },
-    "find-committee-files": {
-      description: "Locate documents shared by your committee.",
-      outcome: "I can find the committee Files area and open a document.",
-      whyItMatters: "The shared location helps everyone use the same current version.",
-      steps: ["Open the committee Team.","Choose the correct channel.","Select Files.","Open the folder that matches the work.","Select the document."],
-      practiceTask: "Find and open one committee document without downloading it."
-    },
-    "edit-shared-document": {
-      description: "Work in the shared file instead of creating another copy.",
-      outcome: "I can edit the committee's shared document and know my changes are saved.",
-      whyItMatters: "One shared document prevents conflicting versions.",
-      steps: ["Open the document from the Team's Files area.","Choose Edit in browser when available.","Make a small change.","Look for the saved status before closing."],
-      practiceTask: "Open a practice document, add a short note and confirm it saves."
-    },
-    "avoid-duplicates": {
-      description: "Recognize when downloading or attaching a file would create another version.",
-      outcome: "I can keep committee work in one current shared file.",
-      whyItMatters: "Duplicate copies make it difficult to know which version contains the latest decision.",
-      steps: ["Open the shared file from Teams.","Edit it there when possible.","Do not rename and reattach a new copy unless the committee has a specific reason."],
-      practiceTask: "Look at a recent email attachment and decide whether a shared link would have been clearer."
-    },
-    "send-a-link": {
-      description: "Point people to the current shared file.",
-      outcome: "I can copy and send a link to a committee file.",
-      whyItMatters: "A link keeps everyone working from the same current version.",
-      steps: ["Find the file in Teams.","Open its More options menu.","Choose Copy link or Share.","Confirm the link is for the intended KPC people.","Paste the link into Teams or KPC email."],
-      practiceTask: "Copy a link to a practice file and paste it into a draft message without sending it."
-    },
-    "committee-knowledge-check": {
-      description: "Practise realistic choices about conversations and shared files.",
-      outcome: "I can choose the right place for common committee work.",
-      whyItMatters: "A short scenario helps confirm that the workflow makes sense before you need it.",
-      steps: ["Read each situation.","Choose the action that keeps the work easiest to find.","Review any suggested lesson."],
-      practiceTask: "Complete the Working in KPC game from the Games area."
-    }
-  };
-
-  const lessons = [];
-  Object.entries(pathLessonTitles).forEach(([pathId, items]) => {
-    items.forEach(([id, title]) => {
-      const detail = detailedCommittee[id] || {};
-      lessons.push({
-        id,
-        pathId,
-        title,
-        description: detail.description || "A short practical KPC lesson that is ready for content to be added.",
-        outcome: detail.outcome || `I can ${title.charAt(0).toLowerCase()}${title.slice(1)}.`,
-        whyItMatters: detail.whyItMatters || "This task supports everyday KPC work and helps information remain easy to find and protect.",
-        estimatedMinutes: detail.estimatedMinutes || 4,
-        microsoftVideo: null,
-        kpcVideo: { url: "", status: "coming-soon" },
-        screenshots: [],
-        steps: detail.steps || [],
-        practiceTask: detail.practiceTask || "",
-        knowledgeCheck: [],
-        troubleshooting: [helpContact.instructions],
-        relatedKitchenTalkId: pathId === "committee-work" ? "talk2" : null,
-        status: detail.steps ? "written guide available" : "outline ready",
-        contentStatus: detail.steps ? ["written guide available","KPC demonstration coming soon"] : ["topic ready for content","content under review"]
-      });
-    });
-  });
-
-  return { learningPaths, lessons, helpContact };
+window.KPCLearning=(()=>{
+const helpContact={label:"Ask KPC for help",instructions:"Include what you were trying to do, the device you were using, and the exact message you saw. Do not send your password."};
+const learningPaths=[
+{id:"start-here",title:"Start Here",description:"Sign in, find your Microsoft 365 apps and protect your KPC account.",outcome:"I can safely access my KPC account and find the tools I need.",label:"Recommended for everyone",featured:true,restricted:false,mascot:"assets/mascots/start-here.svg",mascotAlt:"Friendly KPC pickleball mascot welcoming a volunteer.",lessons:["m365-overview","kpc-use-m365","sign-in-kpc","find-apps","set-up-mfa","unexpected-sign-in","get-help"]},
+{id:"email-meetings",title:"Email and Meetings",description:"Use KPC email, manage invitations and join online meetings.",outcome:"I can use KPC email, manage invitations and participate in meetings.",featured:false,restricted:false,mascot:"assets/mascots/email-meetings.svg",mascotAlt:"KPC pickleball mascot with an envelope and calendar.",lessons:["open-outlook","send-reply-email","personal-email","role-addresses","shared-mailboxes","outlook-calendar","create-teams-meeting","accept-invitation","join-teams-meeting","share-screen"]},
+{id:"committee-work",title:"Working With Your Committee",description:"Find conversations, files and shared work for your KPC committee.",outcome:"I can work with my committee and find the information we share.",featured:true,restricted:false,mascot:"assets/mascots/committee-work.svg",mascotAlt:"KPC pickleball mascot helping with committee work.",lessons:["teams-at-kpc","open-committee-team","channels-conversations","find-committee-files","edit-shared-document","avoid-duplicates","send-a-link","committee-knowledge-check"]},
+{id:"files-what-goes-where",title:"Files — What Goes Where?",description:"Understand OneDrive, Teams and SharePoint without the technical language.",outcome:"I can decide where a KPC document belongs and find it again later.",featured:false,restricted:false,mascot:"assets/mascots/files.svg",mascotAlt:"KPC pickleball mascot organizing files and a paddle bag.",memoryAid:"OneDrive is your paddle bag. SharePoint is the KPC equipment room.",lessons:["onedrive-personal-files","teams-shared-work","sharepoint-lasting-info","move-draft","find-current-version","share-file-safely","official-records","links-vs-attachments"]},
+{id:"staying-safe",title:"Staying Safe",description:"Protect your KPC account, club information and other volunteers.",outcome:"I can recognize common risks and protect KPC information.",featured:false,restricted:false,mascot:"assets/mascots/staying-safe.svg",mascotAlt:"KPC pickleball mascot with a shield and lock.",lessons:["individual-accounts","no-shared-passwords","what-mfa-does","suspicious-sign-ins","basic-phishing","safe-sharing","protect-information","report-problem"]},
+{id:"kpc-administration",title:"KPC Administration",description:"Routine Microsoft 365 tasks for authorized KPC administrators.",outcome:"I can complete routine KPC Microsoft 365 administration safely.",label:"For authorized administrators only",featured:false,restricted:true,mascot:"assets/mascots/administration.svg",mascotAlt:"KPC pickleball mascot holding an administration checklist.",lessons:["add-user","offboard-user","manage-licence","reset-password","committee-access","mailbox-permissions","add-administrator","review-access-changes","admin-continuity"]}
+];
+const titles={
+"start-here":[["m365-overview","What Microsoft 365 is"],["kpc-use-m365","How KPC will use Microsoft 365"],["sign-in-kpc","Sign in to your KPC account"],["find-apps","Find your Microsoft 365 apps"],["set-up-mfa","Set up multifactor authentication"],["unexpected-sign-in","Respond to an unexpected sign-in request"],["get-help","Know where to get help"]],
+"email-meetings":[["open-outlook","Open Outlook"],["send-reply-email","Send and reply to email"],["personal-email","Understand your personal KPC email address"],["role-addresses","Understand permanent role addresses"],["shared-mailboxes","Understand shared and functional mailboxes"],["outlook-calendar","Use the Outlook calendar"],["create-teams-meeting","Create a Teams Meeting"],["accept-invitation","Accept a meeting invitation"],["join-teams-meeting","Join a Teams meeting"],["share-screen","Share your screen"]],
+"committee-work":[["teams-at-kpc","What Teams will do for KPC"],["open-committee-team","Open your committee Team"],["channels-conversations","Understand conversations and channels"],["find-committee-files","Find committee files"],["edit-shared-document","Open and edit a shared document"],["avoid-duplicates","Avoid duplicate file copies"],["send-a-link","Send a link instead of an attachment"],["committee-knowledge-check","Complete the committee-work knowledge check"]],
+"files-what-goes-where":[["onedrive-personal-files","OneDrive for personal KPC working files"],["teams-shared-work","Teams for shared committee work"],["sharepoint-lasting-info","SharePoint for organized and lasting KPC information"],["move-draft","Move a personal draft into a shared location"],["find-current-version","Find the current version"],["share-file-safely","Share a file safely"],["official-records","Know where official KPC records belong"],["links-vs-attachments","Understand links compared with attachments"]],
+"staying-safe":[["individual-accounts","Why everyone has an individual account"],["no-shared-passwords","Why passwords must not be shared"],["what-mfa-does","What multifactor authentication does"],["suspicious-sign-ins","Recognize suspicious sign-in requests"],["basic-phishing","Recognize basic phishing attempts"],["safe-sharing","Share files safely"],["protect-information","Protect member and volunteer information"],["report-problem","Report a problem"]],
+"kpc-administration":[["add-user","Add a user"],["offboard-user","Remove or offboard a user"],["manage-licence","Assign or remove a licence"],["reset-password","Reset a password"],["committee-access","Manage committee access"],["mailbox-permissions","Manage shared mailbox permissions"],["add-administrator","Add another administrator"],["review-access-changes","Review account and access changes"],["admin-continuity","Avoid relying on a single administrator"]]
+};
+const details={
+"create-teams-meeting":{description:"Create and send a Teams meeting invitation from Outlook.",outcome:"I can create a Teams meeting and invite the right people.",whyItMatters:"KPC meetings need a clear invitation, date, time and joining link.",estimatedMinutes:2,kpcVideo:{url:"assets/videos/creating-a-teams-meeting.mp4",status:"available",title:"Create a Teams Meeting"},steps:["Open the Outlook calendar.","Choose New event.","Add the meeting title, date, time and attendees.","Turn on the Teams meeting option.","Review the invitation and send it."],practiceTask:"Create a practice meeting invitation without sending it, then confirm that a Teams joining link appears.",status:"video available",contentStatus:["KPC demonstration available","written guide available"]},
+"teams-at-kpc":{description:"Understand why committee conversations, meetings and shared work will be kept together.",outcome:"I can explain what my committee Team is for.",whyItMatters:"Your committee Team gives volunteers one shared place to find the work instead of searching through separate email chains and attachments.",steps:["Think of Teams as your committee's shared working area.","Use conversations for updates that belong with committee work.","Use the Files area for documents the committee works on together.","Use Outlook for formal email and messages outside the committee."],practiceTask:"Name one current committee task that would be easier to find if its conversation and file were kept together."},
+"open-committee-team":{description:"Find the Microsoft Team used by your KPC committee.",outcome:"I can open my committee Team and recognize its main areas.",whyItMatters:"This is the starting point for your committee's conversations, meetings and shared files.",steps:["Open Microsoft Teams with your KPC account.","Select Teams from the left side.","Find your committee name.","Open the General channel first.","Look for Posts and Files."],practiceTask:"Open your committee Team and locate its Files area."},
+"channels-conversations":{description:"Keep a reply with the correct committee topic.",outcome:"I can find a channel and reply to the correct conversation.",whyItMatters:"Keeping related replies together makes decisions easier to follow later.",steps:["Open the correct committee Team.","Choose the channel that matches the work.","Read the original post and existing replies.","Use Reply under that post instead of starting a separate conversation."],practiceTask:"Find one existing conversation and identify where you would reply."},
+"find-committee-files":{description:"Locate documents shared by your committee.",outcome:"I can find the committee Files area and open a document.",whyItMatters:"The shared location helps everyone use the same current version.",steps:["Open the committee Team.","Choose the correct channel.","Select Files.","Open the folder that matches the work.","Select the document."],practiceTask:"Find and open one committee document without downloading it."},
+"edit-shared-document":{description:"Work in the shared file instead of creating another copy.",outcome:"I can edit the committee's shared document and know my changes are saved.",whyItMatters:"One shared document prevents conflicting versions.",steps:["Open the document from the Team's Files area.","Choose Edit in browser when available.","Make a small change.","Look for the saved status before closing."],practiceTask:"Open a practice document, add a short note and confirm it saves."},
+"avoid-duplicates":{description:"Recognize when downloading or attaching a file would create another version.",outcome:"I can keep committee work in one current shared file.",whyItMatters:"Duplicate copies make it difficult to know which version contains the latest decision.",steps:["Open the shared file from Teams.","Edit it there when possible.","Do not rename and reattach a new copy unless the committee has a specific reason."],practiceTask:"Look at a recent email attachment and decide whether a shared link would have been clearer."},
+"send-a-link":{description:"Point people to the current shared file.",outcome:"I can copy and send a link to a committee file.",whyItMatters:"A link keeps everyone working from the same current version.",steps:["Find the file in Teams.","Open its More options menu.","Choose Copy link or Share.","Confirm the link is for the intended KPC people.","Paste the link into Teams or KPC email."],practiceTask:"Copy a link to a practice file and paste it into a draft message without sending it."},
+"committee-knowledge-check":{description:"Practise realistic choices about conversations and shared files.",outcome:"I can choose the right place for common committee work.",whyItMatters:"A short scenario helps confirm that the workflow makes sense before you need it.",steps:["Read each situation.","Choose the action that keeps the work easiest to find.","Review any suggested lesson."],practiceTask:"Complete the Working in KPC game from the Games area."}
+};
+const lessons=[];
+Object.entries(titles).forEach(([pathId,items])=>items.forEach(([id,title])=>{const d=details[id]||{};lessons.push({id,pathId,title,description:d.description||"A short practical KPC lesson that is ready for content to be added.",outcome:d.outcome||`I can ${title.charAt(0).toLowerCase()}${title.slice(1)}.`,whyItMatters:d.whyItMatters||"This task supports everyday KPC work and helps information remain easy to find and protect.",estimatedMinutes:d.estimatedMinutes||4,microsoftVideo:null,kpcVideo:d.kpcVideo||{url:"",status:"coming-soon"},screenshots:[],steps:d.steps||[],practiceTask:d.practiceTask||"",knowledgeCheck:[],troubleshooting:[helpContact.instructions],relatedKitchenTalkId:pathId==="committee-work"?"talk2":null,status:d.status||(d.steps?"written guide available":"outline ready"),contentStatus:d.contentStatus||(d.steps?["written guide available","KPC demonstration coming soon"]:["topic ready for content","content under review"])})}));
+return{learningPaths,lessons,helpContact};
 })();
