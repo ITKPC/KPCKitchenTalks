@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const talkId=new URLSearchParams(location.search).get("talk");if(talkId&&typeof openTopic==="function"){setTimeout(()=>openTopic(talkId),80)}});
