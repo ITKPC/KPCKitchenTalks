@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 280" role="img" aria-labelledby="title desc">
+  <title id="title">Pickleball player</title>
+  <desc id="desc">A friendly illustrated male pickleball player holding a paddle.</desc>
+  <g fill="none" stroke="#10215b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="104" cy="55" r="31" fill="#f2c9a5"/>
+    <path d="M77 48c5-25 43-32 58-7-8-4-17-6-27-6-12 0-22 4-31 13z" fill="#26365f"/>
+    <path d="M90 60h1M116 60h1" stroke-width="6"/>
+    <path d="M94 75c8 6 17 6 25 0"/>
+    <path d="M78 94c14-10 39-10 53 0l15 72H65z" fill="#8ec753"/>
+    <path d="M76 106 45 145M132 106l29 35"/>
+    <path d="M45 145 26 127M160 141l20 22"/>
+    <path d="M81 166 70 238M129 166l15 72"/>
+    <path d="M69 238 48 259M145 238l24 20"/>
+    <ellipse cx="184" cy="119" rx="22" ry="29" fill="#01aef0" transform="rotate(22 184 119)"/>
+    <path d="m170 142-13 32"/>
+    <circle cx="31" cy="121" r="8" fill="#e9df46" stroke-width="5"/>
+  </g>
+  <circle cx="28" cy="118" r="1.8" fill="#10215b"/>
+  <circle cx="33" cy="123" r="1.8" fill="#10215b"/>
+</svg>
