@@ -10,9 +10,13 @@
 
   async function openFullScreen(player){
     try{
-      if(player.requestFullscreen) await player.requestFullscreen();
-      else if(player.webkitEnterFullscreen) player.webkitEnterFullscreen();
-      else if(player.webkitRequestFullscreen) await player.webkitRequestFullscreen();
+      if(player.webkitEnterFullscreen){
+        player.webkitEnterFullscreen();
+      }else if(player.requestFullscreen){
+        await player.requestFullscreen();
+      }else if(player.webkitRequestFullscreen){
+        await player.webkitRequestFullscreen();
+      }
       player.focus();
     }catch(error){
       console.warn("Full-screen video could not be opened automatically.",error);
@@ -33,6 +37,7 @@
     panel.dataset.videoLesson=lessonId;
     const title=video.title||lesson.title||"KPC demonstration";
     const filename=video.url.split("/").pop();
+    const safeUrl=escapeHtml(video.url);
     panel.innerHTML=`
       <p class="block-label">See how KPC uses it</p>
       <h2>${escapeHtml(title)}</h2>
@@ -45,12 +50,16 @@
         <button class="button dark full-screen-button" type="button">Watch full screen</button>
       </aside>
       <div class="training-video-wrap">
-        <video class="training-video" controls preload="metadata" playsinline aria-label="${escapeHtml(title)} training video">
-          <source src="${escapeHtml(video.url)}" type="video/mp4">
+        <video class="training-video" controls preload="metadata" playsinline webkit-playsinline x-webkit-airplay="allow" aria-label="${escapeHtml(title)} training video">
+          <source src="${safeUrl}" type="video/mp4">
           Your browser cannot play this video.
         </video>
+        <div class="mobile-video-help">
+          <strong>Video not starting on your phone?</strong>
+          <a class="button outline" href="${safeUrl}" target="_blank" rel="noopener">Open video directly</a>
+        </div>
         <p class="video-fallback" hidden>
-          The video could not be loaded. Confirm that <code>${escapeHtml(filename)}</code> is available in the video assets folder.
+          The embedded player could not load this video. <a href="${safeUrl}" target="_blank" rel="noopener">Open the video directly</a>, or confirm that <code>${escapeHtml(filename)}</code> is available in the video assets folder.
         </p>
       </div>`;
 
@@ -58,10 +67,9 @@
     const fallback=panel.querySelector(".video-fallback");
     const fullScreenButton=panel.querySelector(".full-screen-button");
 
+    player.load();
     fullScreenButton.addEventListener("click",()=>openFullScreen(player));
     player.addEventListener("error",()=>{
-      player.hidden=true;
-      fullScreenButton.hidden=true;
       fallback.hidden=false;
     },{once:true});
   }
