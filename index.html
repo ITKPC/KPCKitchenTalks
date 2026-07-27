@@ -9,4 +9,50 @@
   <link rel="stylesheet" href="header-fix.css">
   <link rel="stylesheet" href="icon-styles.css">
   <link rel="stylesheet" href="quiz-training.css">
-  <link rel="stylesheet" href="home
+  <link rel="stylesheet" href="home-redesign.css">
+  <link rel="stylesheet" href="home-minimal.css">
+</head>
+<body class="home-page evergreen-home">
+<header class="site-header">
+  <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC Microsoft 365 Learning</strong></a>
+  <nav aria-label="Main navigation"><a class="active" href="#top">Home</a><a href="learn.html">Learn</a><a href="#kitchen-talks">KitchenTalks</a><a href="#games">Games</a></nav>
+</header>
+<main id="top">
+  <div class="evergreen-shell">
+    <section class="volunteer-hero">
+      <div>
+        <p class="eyebrow">Built for KPC volunteers</p>
+        <h1>Your time matters. The technology should help.</h1>
+        <p class="lead"><strong>This is KPC's Microsoft 365 learning centre.</strong> It gives current and future board and committee members practical help with sign-in, email, meetings, Teams and shared files—without expecting anyone to become a technology expert.</p>
+      </div>
+      <aside class="volunteer-note">
+        <strong>Made for the way volunteers actually learn</strong>
+        <p>Use it when you join KPC, when your role changes, or when you need help with one specific task.</p>
+        <ul><li>No sign-in required</li><li>No personal progress tracking</li><li>Short lessons you can revisit anytime</li></ul>
+      </aside>
+    </section>
+
+    <section class="use-it" aria-labelledby="useItTitle">
+      <header class="section-intro"><div><p class="eyebrow">Choose how to use it</p><h2 id="useItTitle">Start where you are.</h2></div><p>You do not need to work through everything. Pick the type of help that fits your situation today.</p></header>
+      <div class="engagement-grid">
+        <article class="engagement-card primary"><span class="card-kicker">Practical learning</span><h3>Learn how to do a KPC task</h3><p>Choose a short lesson about account setup, Outlook, meetings, committee work, files or administration.</p><a class="button light" href="learn.html">Open Learn</a></article>
+        <article class="engagement-card"><span class="card-kicker">Quick reference</span><h3>Revisit a KitchenTalk</h3><p>Review the original plain-language explanations about why KPC moved to Microsoft 365 and how the tools fit together.</p><a class="button outline" href="#kitchen-talks">View KitchenTalks</a></article>
+        <article class="engagement-card" id="games"><span class="card-kicker">Try it out</span><h3>Play a short learning game</h3><p>Use realistic KPC situations to test your instincts and discover which lesson may help next.</p><div class="hero-actions"><button class="button outline" data-start-quiz="erne">Beginner</button><button class="button outline" data-start-quiz="smash">Intermediate</button></div></article>
+      </div>
+    </section>
+
+    <section id="kitchen-talks" class="talk-library">
+      <header class="library-header"><div><p class="eyebrow">KitchenTalk library</p><h2>The original KPC Microsoft 365 briefings</h2></div></header>
+      <details class="kitchen-talk-details">
+        <summary class="button outline">Open the KitchenTalk library</summary>
+        <div id="topicGrid" class="topic-grid compact-grid"></div>
+      </details>
+    </section>
+  </div>
+</main>
+<footer><span>KPC · Kamloops Pickleball Club</span><span>Evergreen learning for KPC volunteers.</span></footer>
+<dialog id="topicDialog"><button class="close" data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
+<dialog id="quizDialog"><button class="close" data-close-quiz aria-label="Close">×</button><div id="quizContent"></div></dialog>
+<script src="app.js"></script><script src="quiz-training.js"></script><script src="icons.js"></script><script src="deep-link.js"></script>
+</body>
+</html>
