@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="icon-styles.css">
   <link rel="stylesheet" href="quiz-training.css">
   <link rel="stylesheet" href="home-redesign.css">
+  <link rel="stylesheet" href="games-redesign.css">
 </head>
 <body>
 <header class="site-header">
@@ -30,10 +31,35 @@
 
   <section id="talks" class="section white compact-section"><header class="section-heading"><p class="eyebrow">KitchenTalks</p><h2>Understand what is changing at KPC and why.</h2><p>Short explanations about accounts, email, Teams, shared files and the transition.</p></header><div id="topicGrid" class="topic-grid compact-grid"></div></section>
 
-  <section id="games" class="section compact-section"><header class="section-heading centre"><p class="eyebrow">Games</p><h2>Check what you know and find the training that will help.</h2><p>These are friendly practice activities, not formal tests.</p></header><div class="game-grid compact-games">
-    <article class="game-card erne-game"><div class="character"><img src="assets/erne.webp" alt="Erne, the KPC pickleball mascot, for the Getting Started Game"></div><div><small>Getting Started</small><h3>Getting Started Game</h3><p>Try a few everyday situations and see which training could help.</p><button class="button dark" data-start-quiz="erne" aria-label="Open the Getting Started Game">Open Getting Started Game</button></div></article>
-    <article class="game-card smash-game"><div class="character"><img src="assets/smash.webp" alt="Smash, the KPC pickleball mascot, for the Working in KPC Game"></div><div><small>Working in KPC</small><h3>Working in KPC Game</h3><p>Practise decisions about email, meetings, Teams and shared files.</p><button class="button light" data-start-quiz="smash" aria-label="Open the Working in KPC Game">Open Working in KPC Game</button></div></article>
-  </div></section>
+  <section id="games" class="section compact-section games-stage">
+    <header class="section-heading centre"><p class="eyebrow">Choose your challenge</p><h2>Learn by making the call.</h2><p>Short, realistic situations that point you to the training you actually need.</p></header>
+    <div class="challenge-board">
+      <article class="challenge-card starter-challenge">
+        <div class="challenge-art" aria-hidden="true"><span class="ball"></span><span class="paddle"></span></div>
+        <span class="challenge-number" aria-hidden="true">01</span>
+        <div class="challenge-content">
+          <p class="challenge-kicker">Warm-up round</p>
+          <h3>Where should you begin?</h3>
+          <p>Five everyday situations reveal which Microsoft 365 basics will help first.</p>
+          <div class="challenge-meta"><span>5 situations</span><span>Beginner friendly</span><span>About 3 minutes</span></div>
+          <button class="button dark" data-start-quiz="erne" aria-label="Start the Getting Started challenge">Start the warm-up</button>
+        </div>
+      </article>
+
+      <article class="challenge-card scenario-challenge">
+        <div class="challenge-art" aria-hidden="true"><span class="ball"></span><span class="paddle"></span></div>
+        <span class="challenge-number" aria-hidden="true">02</span>
+        <div class="challenge-content">
+          <p class="challenge-kicker">Match play</p>
+          <h3>What would you do at KPC?</h3>
+          <p>Make decisions about email, meetings, Teams and shared files, then see where your instincts are strong and what to review.</p>
+          <div class="challenge-meta"><span>Real KPC scenarios</span><span>Practical decisions</span><span>Training recommendations</span></div>
+          <button class="button light" data-start-quiz="smash" aria-label="Start the Working in KPC challenge">Play the scenario round</button>
+        </div>
+      </article>
+    </div>
+    <div class="challenge-note"><strong>No scores to impress anyone.</strong><span>Choose the answer you would actually use and get a useful next step.</span></div>
+  </section>
 
   <section class="how-strip"><span>Need help?</span><b>→</b><span>Choose the task you are trying to do</span><b>→</b><span>Follow one short lesson</span></section>
 </main>
