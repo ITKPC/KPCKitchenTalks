@@ -3,85 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KPC KitchenTalks helps volunteers understand the Microsoft 365 change, learn practical tasks and find useful training.">
-  <title>KPC KitchenTalks</title>
+  <meta name="description" content="Practical Microsoft 365 help for KPC board and committee volunteers.">
+  <title>KPC Microsoft 365 Help</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="header-fix.css">
-  <link rel="stylesheet" href="icon-styles.css">
   <link rel="stylesheet" href="quiz-training.css">
-  <link rel="stylesheet" href="home-redesign.css">
-  <link rel="stylesheet" href="games-redesign.css">
-  <link rel="stylesheet" href="home-command-centre.css">
+  <link rel="stylesheet" href="home-minimal.css">
 </head>
 <body class="home-page">
 <header class="site-header">
-  <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC KitchenTalks</strong></a>
-  <nav aria-label="Main navigation"><a class="active" href="#talks">KitchenTalks</a><a href="learn.html">Learn</a><a href="#games">Games</a></nav>
+  <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC Microsoft 365 Help</strong></a>
+  <nav aria-label="Main navigation"><a class="active" href="#top">Home</a><a href="learn.html">Learn</a><a href="#games">Games</a></nav>
 </header>
-<main id="top">
-  <section class="home-command">
-    <div class="home-command-inner">
-      <div class="command-copy">
-        <p class="eyebrow">Microsoft 365 at KPC</p>
-        <h1>Find the help you need. Get back to the work that matters.</h1>
-        <p class="lead">Choose the route that matches what you are trying to do right now.</p>
-        <div class="actions"><a class="button dark" href="learn.html#path/start-here">Start with first-time sign-in</a><a class="button outline" href="learn.html">Browse all practical help</a></div>
+<main id="top" class="minimal-home">
+  <div class="minimal-shell">
+    <section class="minimal-hero">
+      <div>
+        <p class="eyebrow">Practical help for KPC volunteers</p>
+        <h1>What are you trying to do?</h1>
+        <p class="lead">Choose a task and follow one short lesson. No sign-in, no tracking and no need to learn everything at once.</p>
       </div>
-      <aside class="quick-start" aria-label="Choose your route">
-        <div class="quick-start-header"><strong>What are you here to do?</strong><span>Choose one</span></div>
-        <a class="quick-route" href="#talks"><span class="route-icon" aria-hidden="true">01</span><span><strong>Understand the change</strong><small>Why KPC is moving to Microsoft 365 and what it means.</small></span><span class="route-arrow" aria-hidden="true">→</span></a>
-        <a class="quick-route" href="learn.html"><span class="route-icon" aria-hidden="true">02</span><span><strong>Complete a practical task</strong><small>Email, meetings, Teams, files and account help.</small></span><span class="route-arrow" aria-hidden="true">→</span></a>
-        <a class="quick-route" href="#games"><span class="route-icon" aria-hidden="true">03</span><span><strong>Test a real-life decision</strong><small>Use short KPC scenarios to find what to review.</small></span><span class="route-arrow" aria-hidden="true">→</span></a>
-      </aside>
-    </div>
-    <div class="home-proof"><span>No sign-in required</span><span>No personal progress tracking</span><span>Short, task-focused help</span></div>
-  </section>
+      <a class="button dark" href="learn.html">See all help</a>
+    </section>
 
-  <section id="talks" class="briefing-section">
-    <div class="briefing-wrap">
-      <header class="briefing-header">
-        <div><p class="eyebrow">KitchenTalks</p><h2>The four things everyone should understand.</h2></div>
-        <p>Use these short briefings when you need the “why” behind KPC accounts, email, Teams and shared files. Open only the one that answers your question.</p>
-      </header>
-      <div id="topicGrid" class="topic-grid compact-grid"></div>
-    </div>
-  </section>
-
-  <section id="games" class="practice-zone">
-    <div class="practice-wrap">
-      <header class="practice-intro"><p class="eyebrow">Optional practice</p><h2>Make the call.</h2><p>Choose a few realistic situations. The result points you to useful training; it is not a formal test.</p></header>
-      <div class="challenge-board">
-        <article class="challenge-card starter-challenge">
-          <div class="challenge-art" aria-hidden="true"><span class="ball"></span><span class="paddle"></span></div>
-          <span class="challenge-number" aria-hidden="true">01</span>
-          <div class="challenge-content">
-            <p class="challenge-kicker">Warm-up</p>
-            <h3>Where should you begin?</h3>
-            <p>Everyday situations identify the Microsoft 365 basics most useful to you.</p>
-            <div class="challenge-meta"><span>Beginner friendly</span><span>About 3 minutes</span></div>
-            <button class="button dark" data-start-quiz="erne" aria-label="Start the Getting Started challenge">Start the warm-up</button>
-          </div>
-        </article>
-        <article class="challenge-card scenario-challenge">
-          <div class="challenge-art" aria-hidden="true"><span class="ball"></span><span class="paddle"></span></div>
-          <span class="challenge-number" aria-hidden="true">02</span>
-          <div class="challenge-content">
-            <p class="challenge-kicker">Match play</p>
-            <h3>What would you do at KPC?</h3>
-            <p>Make practical choices about email, meetings, Teams and shared files.</p>
-            <div class="challenge-meta"><span>Real KPC scenarios</span><span>Useful next steps</span></div>
-            <button class="button light" data-start-quiz="smash" aria-label="Start the Working in KPC challenge">Play the scenario round</button>
-          </div>
-        </article>
+    <section class="popular-help" aria-labelledby="popularHelpTitle">
+      <header class="popular-help-header"><h2 id="popularHelpTitle">Common tasks</h2><a href="learn.html">Browse every topic →</a></header>
+      <div class="task-launcher">
+        <a class="task-link" href="learn.html#lesson/first-time-m365-sign-in"><span>01</span><span><strong>Sign in for the first time</strong><small>Password, multifactor authentication and finding your apps</small></span></a>
+        <a class="task-link" href="learn.html#path/email-meetings"><span>02</span><span><strong>Use email or meetings</strong><small>Outlook, invitations, Teams meetings and shared mailboxes</small></span></a>
+        <a class="task-link" href="learn.html#path/committee-work"><span>03</span><span><strong>Work with a committee</strong><small>Teams conversations, shared files and current versions</small></span></a>
+        <a class="task-link" href="learn.html#path/files-what-goes-where"><span>04</span><span><strong>Find or share a file</strong><small>OneDrive, Teams, SharePoint and safe links</small></span></a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="home-help-strip"><div><strong>Stuck while working?</strong><span>Ask another board or committee member first. If the issue remains, contact the KPC Technology Team.</span><a href="mailto:ITConsult@kamloopspickleballclub.ca">ITConsult@kamloopspickleballclub.ca</a></div></section>
+    <section id="games" class="minimal-utility">
+      <div><strong>Not sure which lesson you need?</strong><span>Try a short set of KPC situations.</span></div>
+      <div><button class="button" data-start-quiz="erne">Getting Started</button><button class="button" data-start-quiz="smash">Working in KPC</button></div>
+    </section>
+
+    <p class="minimal-support">Still stuck? Ask another board or committee member first. Then contact the <a href="mailto:ITConsult@kamloopspickleballclub.ca">KPC Technology Team</a>.</p>
+  </div>
 </main>
-<footer><span>KPC KitchenTalks · Kamloops Pickleball Club</span><span>No sign-in. No personal information.</span></footer>
-<dialog id="topicDialog"><button class="close" data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
+<footer><span>KPC · Kamloops Pickleball Club</span><span>No sign-in. No personal information.</span></footer>
+<div id="topicGrid" hidden></div>
+<dialog id="topicDialog" hidden><button data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
 <dialog id="quizDialog"><button class="close" data-close-quiz aria-label="Close">×</button><div id="quizContent"></div></dialog>
-<script src="app.js"></script><script src="quiz-training.js"></script><script src="icons.js"></script><script src="deep-link.js"></script>
+<script src="app.js"></script><script src="quiz-training.js"></script>
 </body>
 </html>
