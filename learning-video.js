@@ -4,6 +4,21 @@
     return match?match[1]:"";
   }
 
+  function escapeHtml(value){
+    return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char]);
+  }
+
+  async function openFullScreen(player){
+    try{
+      if(player.requestFullscreen) await player.requestFullscreen();
+      else if(player.webkitEnterFullscreen) player.webkitEnterFullscreen();
+      else if(player.webkitRequestFullscreen) await player.webkitRequestFullscreen();
+      player.focus();
+    }catch(error){
+      console.warn("Full-screen video could not be opened automatically.",error);
+    }
+  }
+
   function enhance(){
     const lessonId=currentLessonId();
     if(!lessonId)return;
@@ -20,21 +35,33 @@
     const filename=video.url.split("/").pop();
     panel.innerHTML=`
       <p class="block-label">See how KPC uses it</p>
-      <h2>${title}</h2>
+      <h2>${escapeHtml(title)}</h2>
+      <aside class="full-screen-callout">
+        <div class="full-screen-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div>
+          <strong>Make the video easier to watch</strong>
+          <p>Select <b>Watch full screen</b>, or use the four-corner symbol in the video controls.</p>
+        </div>
+        <button class="button dark full-screen-button" type="button">Watch full screen</button>
+      </aside>
       <div class="training-video-wrap">
-        <video class="training-video" controls preload="metadata" playsinline aria-label="${title} training video">
-          <source src="${video.url}" type="video/mp4">
+        <video class="training-video" controls preload="metadata" playsinline aria-label="${escapeHtml(title)} training video">
+          <source src="${escapeHtml(video.url)}" type="video/mp4">
           Your browser cannot play this video.
         </video>
         <p class="video-fallback" hidden>
-          The video could not be loaded. Confirm that <code>${filename}</code> is available in the video assets folder.
+          The video could not be loaded. Confirm that <code>${escapeHtml(filename)}</code> is available in the video assets folder.
         </p>
       </div>`;
 
     const player=panel.querySelector("video");
     const fallback=panel.querySelector(".video-fallback");
+    const fullScreenButton=panel.querySelector(".full-screen-button");
+
+    fullScreenButton.addEventListener("click",()=>openFullScreen(player));
     player.addEventListener("error",()=>{
       player.hidden=true;
+      fullScreenButton.hidden=true;
       fallback.hidden=false;
     },{once:true});
   }
