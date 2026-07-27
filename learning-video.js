@@ -1,29 +1,40 @@
 (()=>{
-  const videoPath="assets/videos/creating-a-teams-meeting-web.mp4";
+  function currentLessonId(){
+    const match=location.hash.match(/^#lesson\/(.+)$/);
+    return match?match[1]:"";
+  }
 
   function enhance(){
-    if(location.hash!=="#lesson/create-teams-meeting")return;
-    const panel=document.querySelector(".kpc-source");
-    if(!panel||panel.dataset.videoEnhanced)return;
+    const lessonId=currentLessonId();
+    if(!lessonId)return;
 
-    panel.dataset.videoEnhanced="true";
+    const lesson=window.KPCLearning?.lessons?.find(item=>item.id===lessonId);
+    const video=lesson?.kpcVideo;
+    if(!video?.url)return;
+
+    const panel=document.querySelector(".kpc-source");
+    if(!panel||panel.dataset.videoLesson===lessonId)return;
+
+    panel.dataset.videoLesson=lessonId;
+    const title=video.title||lesson.title||"KPC demonstration";
+    const filename=video.url.split("/").pop();
     panel.innerHTML=`
       <p class="block-label">See how KPC uses it</p>
-      <h2>Create a Teams Meeting</h2>
+      <h2>${title}</h2>
       <div class="training-video-wrap">
-        <video class="training-video" controls preload="metadata" playsinline aria-label="Create a Teams Meeting training video">
-          <source src="${videoPath}" type="video/mp4">
+        <video class="training-video" controls preload="metadata" playsinline aria-label="${title} training video">
+          <source src="${video.url}" type="video/mp4">
           Your browser cannot play this video.
         </video>
         <p class="video-fallback" hidden>
-          The video could not be loaded. Confirm that <code>creating-a-teams-meeting-web.mp4</code> is inside <code>assets/videos</code>.
+          The video could not be loaded. Confirm that <code>${filename}</code> is available in the video assets folder.
         </p>
       </div>`;
 
-    const video=panel.querySelector("video");
+    const player=panel.querySelector("video");
     const fallback=panel.querySelector(".video-fallback");
-    video.addEventListener("error",()=>{
-      video.hidden=true;
+    player.addEventListener("error",()=>{
+      player.hidden=true;
       fallback.hidden=false;
     },{once:true});
   }
