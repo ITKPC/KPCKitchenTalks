@@ -2,16 +2,20 @@
   const data = window.KPCLearning;
   if (!data || !Array.isArray(data.lessons)) return;
 
-  const technologyTeam = {
-    label: "Contact the KPC Technology Team",
-    instructions: "Email ITConsult@kamloopspickleballclub.ca. Include what you were trying to do, the device you were using, and the exact message you saw. Never send your password, temporary password, multifactor authentication code, or sign-in approval number."
+  const helpGuidance = {
+    label: "KPC Technology Team",
+    peerHelp: "Start by asking another board or committee member. Someone working with you may have already solved the same problem and can often help quickly.",
+    technologyHelp: "If you are still stuck, email ITConsult@kamloopspickleballclub.ca. Include what you were trying to do, the device you were using, and the exact message you saw.",
+    safety: "Never send your password, temporary password, multifactor authentication code, or sign-in approval number."
   };
 
-  data.helpContact.label = technologyTeam.label;
-  data.helpContact.instructions = technologyTeam.instructions;
+  data.helpContact.label = helpGuidance.label;
+  data.helpContact.instructions = helpGuidance.technologyHelp;
+  data.helpContact.peerHelp = helpGuidance.peerHelp;
+  data.helpContact.safety = helpGuidance.safety;
 
   data.lessons.forEach(lesson => {
-    lesson.troubleshooting = [technologyTeam.instructions];
+    lesson.troubleshooting = [];
   });
 
   const signInLesson = data.lessons.find(lesson => lesson.id === "first-time-m365-sign-in");
