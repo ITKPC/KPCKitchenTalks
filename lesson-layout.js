@@ -6,30 +6,8 @@
     page.dataset.layoutEnhanced = "true";
     page.classList.add("lesson-refined");
 
-    const header = page.querySelector(".lesson-header-with-mascot");
-    const understand = page.querySelector(".understand");
     const sources = page.querySelector(".two-source-grid");
-    const practice = page.querySelector(".practise");
-    const check = page.querySelector(".check");
     const help = page.querySelector(".help-block");
-
-    if (understand) understand.id = "lesson-goal";
-    if (sources) sources.id = "lesson-watch";
-    if (practice) practice.id = "lesson-steps";
-    if (check) check.id = "lesson-check";
-    if (help) help.id = "lesson-help";
-
-    if (header) {
-      const jumpbar = document.createElement("nav");
-      jumpbar.className = "lesson-jumpbar";
-      jumpbar.setAttribute("aria-label", "Jump to lesson section");
-      jumpbar.innerHTML = `
-        <a href="#lesson-watch">Watch</a>
-        <a href="#lesson-steps">Steps</a>
-        <a href="#lesson-check">Check</a>
-        <a href="#lesson-help">Help</a>`;
-      header.insertAdjacentElement("afterend", jumpbar);
-    }
 
     if (sources) {
       const kpc = sources.querySelector(".kpc-source");
