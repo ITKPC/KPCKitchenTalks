@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Safe KPC Outlook practice simulator for volunteers.">
+  <title>KPC Outlook Practice</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="header-fix.css">
+  <link rel="stylesheet" href="outlook-practice.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC KitchenTalks</strong></a>
+  <nav aria-label="Main navigation"><a href="index.html#talks">KitchenTalks</a><a class="active" href="learn.html">Learn</a><a href="index.html#games">Games</a></nav>
+</header>
+<main class="practice-shell">
+  <section class="practice-intro">
+    <div>
+      <p class="eyebrow">KPC Outlook Practice</p>
+      <h1>Practise email without sending anything.</h1>
+      <p>This is a safe simulation for <strong>smash@kamloopspickleballclub.ca</strong>. It is not connected to a real mailbox.</p>
+    </div>
+    <div class="practice-actions"><a class="button outline" href="learn.html#path/email-meetings">Back to Email and Meetings</a><button class="button dark" id="resetPractice">Reset practice</button></div>
+  </section>
+
+  <section class="task-banner" aria-live="polite">
+    <strong id="taskTitle">Practice task 1 of 5</strong>
+    <span id="taskText">Open the message from Scheduling.</span>
+    <button id="nextTask" class="button outline">Next task</button>
+  </section>
+
+  <section class="owa" aria-label="Simulated Outlook inbox">
+    <header class="owa-topbar"><div class="app-launcher" aria-hidden="true">⋮⋮⋮</div><strong>Outlook</strong><label class="search-box"><span class="sr-only">Search practice messages</span><input id="searchMail" type="search" placeholder="Search"></label><div class="account-chip" title="Training account">S</div></header>
+    <div class="owa-body">
+      <nav class="owa-rail" aria-label="Outlook areas"><button class="rail-button active" data-area="mail" aria-label="Mail">✉</button><button class="rail-button" data-area="calendar" aria-label="Calendar">▦</button></nav>
+      <aside class="folder-pane"><button class="new-mail" id="newMail">＋ New mail</button><h2>Folders</h2><button class="folder active" data-folder="inbox">Inbox <span id="inboxCount">4</span></button><button class="folder" data-folder="drafts">Drafts <span id="draftCount">0</span></button><button class="folder" data-folder="sent">Sent Items <span id="sentCount">1</span></button><button class="folder" data-folder="deleted">Deleted Items</button><div class="account-note"><strong>Training account</strong><span>smash@kamloopspickleballclub.ca</span></div></aside>
+      <section class="message-list-pane" aria-label="Message list"><div class="list-toolbar"><strong id="folderHeading">Inbox</strong><button id="markRead">Mark all read</button></div><div id="messageList" class="message-list"></div></section>
+      <section class="reading-pane" id="readingPane" aria-live="polite"><div class="empty-reading"><span aria-hidden="true">✉</span><h2>Select a message to read</h2><p>Choose a message from the list.</p></div></section>
+    </div>
+  </section>
+  <p class="practice-disclaimer">Training simulation only. No message leaves this page, and no personal information is stored.</p>
+</main>
+<script src="outlook-practice.js"></script>
+</body>
+</html>
