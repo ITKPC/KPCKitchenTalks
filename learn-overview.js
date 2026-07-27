@@ -9,18 +9,14 @@
       <div class="learn-welcome-copy">
         <p class="eyebrow">KPC Microsoft 365 Learning</p>
         <h1>Learn the few things you need for your KPC role.</h1>
-        <p>Start with your first sign-in, then explore Outlook, Teams, shared information and account safety. What you can see inside Microsoft 365 will reflect the board, committee or project work assigned to you.</p>
-      </div>
-      <aside class="learn-welcome-note">
-        <strong>No need to memorize the system.</strong>
-        <p>Committee names, folders and access may change over time. These lessons focus on the lasting skills that help you find your way.</p>
-      </aside>`;
+        <p>Start with your first sign-in, then explore Outlook, Teams, shared information, everyday apps and account safety. What you can see inside Microsoft 365 will reflect the board, committee or project work assigned to you.</p>
+      </div>`;
 
     const heading = pathSection.querySelector(".section-heading");
     if (heading) {
       heading.innerHTML = `
         <p class="eyebrow">The essentials</p>
-        <h2>Five ideas that make Microsoft 365 easier.</h2>
+        <h2>Six ideas that make Microsoft 365 easier.</h2>
         <p>Begin with the section that fits your role today. Return whenever your responsibilities change.</p>`;
     }
 
