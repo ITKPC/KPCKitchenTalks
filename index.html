@@ -3,51 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Practical Microsoft 365 help for KPC board and committee volunteers.">
-  <title>KPC Microsoft 365 Help</title>
+  <meta name="description" content="Evergreen Microsoft 365 learning and support for KPC board and committee volunteers.">
+  <title>KPC Microsoft 365 Learning</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="header-fix.css">
+  <link rel="stylesheet" href="icon-styles.css">
   <link rel="stylesheet" href="quiz-training.css">
+  <link rel="stylesheet" href="home-redesign.css">
   <link rel="stylesheet" href="home-minimal.css">
 </head>
-<body class="home-page">
+<body class="home-page evergreen-home">
 <header class="site-header">
-  <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC Microsoft 365 Help</strong></a>
-  <nav aria-label="Main navigation"><a class="active" href="#top">Home</a><a href="learn.html">Learn</a><a href="#games">Games</a></nav>
+  <a class="brand" href="#top"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/kpc-logo.png" alt="Kamloops Pickleball Club"></span><span class="divider"></span><strong>KPC Microsoft 365 Learning</strong></a>
+  <nav aria-label="Main navigation"><a class="active" href="#top">Home</a><a href="learn.html">Learn</a><a href="#kitchen-talks">KitchenTalks</a><a href="#games">Games</a></nav>
 </header>
-<main id="top" class="minimal-home">
-  <div class="minimal-shell">
-    <section class="minimal-hero">
+<main id="top">
+  <div class="evergreen-shell">
+    <section class="volunteer-hero">
       <div>
-        <p class="eyebrow">Practical help for KPC volunteers</p>
-        <h1>What are you trying to do?</h1>
-        <p class="lead">Choose a task and follow one short lesson. No sign-in, no tracking and no need to learn everything at once.</p>
+        <p class="eyebrow">Built for KPC volunteers</p>
+        <h1>Your time matters. The technology should help.</h1>
+        <p class="lead"><strong>This is KPC's permanent Microsoft 365 learning centre.</strong> It gives current and future board and committee members practical help with sign-in, email, meetings, Teams and shared files—without expecting anyone to become a technology expert.</p>
+        <div class="hero-actions"><a class="button dark" href="learn.html">Find practical help</a><a class="button outline" href="learn.html#path/start-here">New to Microsoft 365?</a></div>
       </div>
-      <a class="button dark" href="learn.html">See all help</a>
+      <aside class="volunteer-note">
+        <strong>Made for the way volunteers actually learn</strong>
+        <p>Use it when you join KPC, when your role changes, or when you need help with one specific task.</p>
+        <ul><li>No sign-in required</li><li>No personal progress tracking</li><li>Short lessons you can revisit anytime</li></ul>
+      </aside>
     </section>
 
-    <section class="popular-help" aria-labelledby="popularHelpTitle">
-      <header class="popular-help-header"><h2 id="popularHelpTitle">Common tasks</h2><a href="learn.html">Browse every topic →</a></header>
-      <div class="task-launcher">
-        <a class="task-link" href="learn.html#lesson/first-time-m365-sign-in"><span>01</span><span><strong>Sign in for the first time</strong><small>Password, multifactor authentication and finding your apps</small></span></a>
-        <a class="task-link" href="learn.html#path/email-meetings"><span>02</span><span><strong>Use email or meetings</strong><small>Outlook, invitations, Teams meetings and shared mailboxes</small></span></a>
-        <a class="task-link" href="learn.html#path/committee-work"><span>03</span><span><strong>Work with a committee</strong><small>Teams conversations, shared files and current versions</small></span></a>
-        <a class="task-link" href="learn.html#path/files-what-goes-where"><span>04</span><span><strong>Find or share a file</strong><small>OneDrive, Teams, SharePoint and safe links</small></span></a>
+    <section class="use-it" aria-labelledby="useItTitle">
+      <header class="section-intro"><div><p class="eyebrow">Choose how to use it</p><h2 id="useItTitle">Start where you are.</h2></div><p>You do not need to work through everything. Pick the type of help that fits your situation today.</p></header>
+      <div class="engagement-grid">
+        <article class="engagement-card primary"><span class="card-kicker">Practical learning</span><h3>Complete a KPC task</h3><p>Follow a short lesson for account setup, Outlook, meetings, committee work, files or administration.</p><a class="button light" href="learn.html">Open Learn</a></article>
+        <article class="engagement-card"><span class="card-kicker">Quick reference</span><h3>Revisit a KitchenTalk</h3><p>Review the original plain-language explanations about why KPC moved to Microsoft 365 and how the tools fit together.</p><a class="button outline" href="#kitchen-talks">View KitchenTalks</a></article>
+        <article class="engagement-card" id="games"><span class="card-kicker">Try it out</span><h3>Play a short learning game</h3><p>Use realistic KPC situations to test your instincts and discover which lesson may help next.</p><div class="hero-actions"><button class="button outline" data-start-quiz="erne">Getting Started</button><button class="button outline" data-start-quiz="smash">Working in KPC</button></div></article>
       </div>
     </section>
 
-    <section id="games" class="minimal-utility">
-      <div><strong>Not sure which lesson you need?</strong><span>Try a short set of KPC situations.</span></div>
-      <div><button class="button" data-start-quiz="erne">Getting Started</button><button class="button" data-start-quiz="smash">Working in KPC</button></div>
+    <section id="kitchen-talks" class="talk-library">
+      <header class="library-header"><div><p class="eyebrow">KitchenTalk library</p><h2>The original KPC Microsoft 365 briefings</h2></div><p>Originally shared by email and preserved here so future board and committee members can understand the decisions behind the system.</p></header>
+      <div id="topicGrid" class="topic-grid compact-grid"></div>
     </section>
 
-    <p class="minimal-support">Still stuck? Ask another board or committee member first. Then contact the <a href="mailto:ITConsult@kamloopspickleballclub.ca">KPC Technology Team</a>.</p>
+    <section class="support-line"><span><strong>Need help?</strong> Ask another board or committee member first. If the issue remains, contact the KPC Technology Team.</span><a href="mailto:ITConsult@kamloopspickleballclub.ca">ITConsult@kamloopspickleballclub.ca</a></section>
   </div>
 </main>
-<footer><span>KPC · Kamloops Pickleball Club</span><span>No sign-in. No personal information.</span></footer>
-<div id="topicGrid" hidden></div>
-<dialog id="topicDialog" hidden><button data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
+<footer><span>KPC · Kamloops Pickleball Club</span><span>Evergreen learning for KPC volunteers.</span></footer>
+<dialog id="topicDialog"><button class="close" data-close-topic aria-label="Close">×</button><div id="topicContent"></div></dialog>
 <dialog id="quizDialog"><button class="close" data-close-quiz aria-label="Close">×</button><div id="quizContent"></div></dialog>
-<script src="app.js"></script><script src="quiz-training.js"></script>
+<script src="app.js"></script><script src="quiz-training.js"></script><script src="icons.js"></script><script src="deep-link.js"></script>
 </body>
 </html>
