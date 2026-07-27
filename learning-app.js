@@ -9,17 +9,6 @@
   }
 
   const { learningPaths, lessons, helpContact } = data;
-  const progressKey = "kpcLearningProgress";
-
-  function readProgress() {
-    try { return JSON.parse(localStorage.getItem(progressKey) || "{}") || {}; }
-    catch { return {}; }
-  }
-
-  function saveProgress(value) {
-    try { localStorage.setItem(progressKey, JSON.stringify(value)); }
-    catch {}
-  }
 
   function escapeText(value) {
     return String(value ?? "").replace(/[&<>"']/g, char => ({
@@ -45,12 +34,6 @@
     window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }
 
-  function progressFor(path) {
-    const progress = readProgress();
-    const completed = path.lessons.filter(id => progress[id]?.completed).length;
-    return { completed, total: path.lessons.length, percent: path.lessons.length ? Math.round(completed / path.lessons.length * 100) : 0 };
-  }
-
   function statusPills(items = []) {
     return `<div class="status-list">${items.map(item => `<span>${escapeText(item)}</span>`).join("")}</div>`;
   }
@@ -60,8 +43,7 @@
   }
 
   function pathCard(path, compact = false) {
-    const progress = progressFor(path);
-    const action = progress.completed ? "Continue this path" : path.featured ? "Start this path" : "Explore lessons";
+    const action = path.featured ? "Start this path" : "Explore lessons";
     return `<article class="path-card ${path.featured ? "featured-path" : ""} ${path.restricted ? "restricted-path" : ""} ${compact ? "compact-path" : ""}">
       <div class="path-visual">${mascotImage(path)}</div>
       <div class="path-card-body">
@@ -69,8 +51,7 @@
         <h2>${escapeText(path.title)}</h2>
         <p>${escapeText(path.description)}</p>
         <p class="outcome"><strong>Outcome:</strong> ${escapeText(path.outcome)}</p>
-        <div class="path-meta"><span>${path.lessons.length} topics</span><span>${progress.completed} completed</span></div>
-        <div class="path-progress" aria-label="${progress.percent}% complete"><span style="width:${progress.percent}%"></span></div>
+        <div class="path-meta"><span>${path.lessons.length} topics</span></div>
         <button class="button dark" data-go="path/${path.id}">${action}</button>
       </div>
     </article>`;
@@ -91,11 +72,11 @@
           <button data-go="lesson/send-a-link">How do I send this to my committee?</button>
           <button data-go="path/files-what-goes-where">Where should this file go?</button>
           <button data-go="lesson/shared-mailboxes">Which email address should I use?</button>
-          <button data-go="lesson/unexpected-sign-in">Why am I being asked to approve a sign-in?</button>
+          <button data-go="lesson/suspicious-sign-ins">Why am I being asked to approve a sign-in?</button>
         </div>
       </section>
       <section class="section white path-section">
-        <div class="section-heading"><p class="eyebrow">Start anywhere</p><h2>Choose a practical training path.</h2><p>Every path is already built. Open a topic and add content as it becomes ready.</p></div>
+        <div class="section-heading"><p class="eyebrow">Start anywhere</p><h2>Choose a practical training path.</h2><p>Open the topic that matches the task you are trying to complete.</p></div>
         <div class="path-grid">${volunteerPaths.map(path => pathCard(path)).join("")}</div>
       </section>
       ${adminPath ? `<section class="section admin-section"><div class="section-heading"><p class="eyebrow">Restricted training</p><h2>KPC Administration</h2><p>For people specifically authorized to manage KPC Microsoft 365 accounts and access.</p></div>${pathCard(adminPath, true)}</section>` : ""}
@@ -109,17 +90,16 @@
   }
 
   function lessonRow(path, lesson, index) {
-    const completed = Boolean(readProgress()[lesson.id]?.completed);
     return `<article class="lesson-row">
       <div class="lesson-mascot">${mascotImage(path, "lesson-mascot-image")}</div>
       <div class="lesson-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</div>
       <div class="lesson-copy">
-        <div class="lesson-title-line"><h2>${escapeText(lesson.title)}</h2>${completed ? `<span class="complete-badge">Completed</span>` : ""}</div>
+        <div class="lesson-title-line"><h2>${escapeText(lesson.title)}</h2></div>
         <p>${escapeText(lesson.description)}</p>
         ${statusPills(lesson.contentStatus)}
         <span class="estimated">About ${lesson.estimatedMinutes || 4} minutes</span>
       </div>
-      <button class="button outline" data-go="lesson/${lesson.id}" aria-label="Open topic: ${escapeText(lesson.title)}">${completed ? "Review topic" : "Open topic"}</button>
+      <button class="button outline" data-go="lesson/${lesson.id}" aria-label="Open topic: ${escapeText(lesson.title)}">Open topic</button>
     </article>`;
   }
 
@@ -127,7 +107,6 @@
     const path = pathById(pathId);
     if (!path) return renderNotFound();
     const topics = pathLessons(path);
-    const progress = progressFor(path);
 
     app.innerHTML = `${breadcrumbs([{ label: "Learn", href: "learn.html" }, { label: path.title }])}
       <section class="path-hero ${path.restricted ? "restricted-path" : ""}">
@@ -138,7 +117,7 @@
           <p>${escapeText(path.description)}</p>
           <p class="outcome"><strong>${escapeText(path.outcome)}</strong></p>
           ${path.memoryAid ? `<aside class="memory-aid"><strong>Less Computer, More Pickleball</strong><p>${escapeText(path.memoryAid)}</p><p>Teams is where committees work together. Shared Teams files are stored in SharePoint behind the scenes.</p></aside>` : ""}
-          <div class="path-summary"><span>${topics.length} topics</span><span>${progress.completed} completed</span></div>
+          <div class="path-summary"><span>${topics.length} topics</span></div>
         </div>
         ${mascotImage(path, "path-hero-mascot")}
       </section>
@@ -153,10 +132,6 @@
     const lesson = lessonById(lessonId);
     if (!lesson) return renderNotFound();
     const path = pathById(lesson.pathId);
-    const progress = readProgress();
-    progress[lesson.id] = { ...(progress[lesson.id] || {}), viewed: true, lastVisited: new Date().toISOString() };
-    saveProgress(progress);
-
     const hasSteps = Array.isArray(lesson.steps) && lesson.steps.length;
     const hasCheck = Array.isArray(lesson.knowledgeCheck) && lesson.knowledgeCheck.length;
 
@@ -186,7 +161,7 @@
 
         <section class="lesson-block help-block"><h2>What to do if it does not work</h2><ul>${(lesson.troubleshooting || [helpContact.instructions]).map(item => `<li>${escapeText(item)}</li>`).join("")}</ul><p><strong>${escapeText(helpContact.label)}:</strong> ${escapeText(helpContact.instructions)}</p></section>
 
-        <footer class="lesson-actions"><button class="button dark" data-complete="${lesson.id}">${progress[lesson.id]?.completed ? "Mark as not complete" : "Mark topic complete"}</button>${lesson.relatedKitchenTalkId ? `<a class="button outline" href="index.html?talk=${lesson.relatedKitchenTalkId}#talks">Open related KitchenTalk</a>` : ""}<button class="button outline" data-go="path/${path.id}">Back to ${escapeText(path.title)}</button></footer>
+        <footer class="lesson-actions">${lesson.relatedKitchenTalkId ? `<a class="button outline" href="index.html?talk=${lesson.relatedKitchenTalkId}#talks">Open related KitchenTalk</a>` : ""}<button class="button outline" data-go="path/${path.id}">Back to ${escapeText(path.title)}</button></footer>
       </article>`;
   }
 
@@ -212,16 +187,6 @@
     if (go) {
       event.preventDefault();
       navigate(go.dataset.go || "");
-      return;
-    }
-
-    const complete = event.target.closest("[data-complete]");
-    if (complete) {
-      const progress = readProgress();
-      const id = complete.dataset.complete;
-      progress[id] = { ...(progress[id] || {}), viewed: true, completed: !progress[id]?.completed, lastVisited: new Date().toISOString() };
-      saveProgress(progress);
-      render();
       return;
     }
 
