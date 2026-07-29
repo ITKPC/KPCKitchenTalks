@@ -13,12 +13,7 @@
     status: 'written guide available',
     contentStatus: ['video coming soon', 'written guide available'],
     kpcVideo: { url: '', status: 'coming-soon', title: 'Working together in Microsoft Teams' },
-    beforeYouStart: [
-      'Your KPC Microsoft 365 account',
-      'Access to Microsoft Teams',
-      'Membership in at least one KPC Team',
-      'A computer, tablet or smartphone with internet access'
-    ],
+    beforeYouStart: ['Your KPC Microsoft 365 account','Access to Microsoft Teams','Membership in at least one KPC Team','A computer, tablet or smartphone with internet access'],
     knowledgeCheck: [
       { q: 'Where should a committee discussion normally take place when the information may be useful to the whole group?', a: ['In the appropriate Team channel', 'In one volunteer’s private chat', 'In a personal email account'], correct: 0 },
       { q: 'What should you select when responding to an existing post?', a: ['New conversation', 'Reply', 'New Team'], correct: 1 },
@@ -88,22 +83,13 @@
     if (understand) understand.innerHTML = `<p class="block-label">After this lesson</p><h2>${esc(lesson.outcome)}</h2><p>${esc(lesson.whyItMatters)}</p>`;
 
     const sources = page.querySelector('.two-source-grid');
-    if (sources) sources.innerHTML = `
-      <div class="lesson-block kpc-source teams-video-placeholder"><p class="block-label">See how KPC uses it</p><h2>Working together in Microsoft Teams</h2><p class="video-tip"><strong>Make the video easier to watch</strong><br>Select Watch full screen, or use the four-corner symbol in the video controls.</p><div class="video-coming-soon"><strong>Video coming soon</strong><p>The KPC demonstration will appear here when it is ready.</p></div></div>
-      <details class="lesson-block microsoft-source optional-help"><summary>Optional: official Microsoft help</summary><p>This section can link to Microsoft’s general Teams training.</p><p>KPC’s lesson explains how our club uses Teams. Microsoft’s training provides additional information about the application itself.</p></details>`;
+    if (sources) sources.innerHTML = `<div class="lesson-block kpc-source teams-video-placeholder"><p class="block-label">See how KPC uses it</p><h2>Working together in Microsoft Teams</h2><p class="video-tip"><strong>Make the video easier to watch</strong><br>Select Watch full screen, or use the four-corner symbol in the video controls.</p><div class="video-coming-soon"><strong>Video coming soon</strong><p>The KPC demonstration will appear here when it is ready.</p></div></div><details class="lesson-block microsoft-source optional-help"><summary>Optional: official Microsoft help</summary><p>This section can link to Microsoft’s general Teams training.</p><p>KPC’s lesson explains how our club uses Teams. Microsoft’s training provides additional information about the application itself.</p></details>`;
 
     const practise = page.querySelector('.practise');
-    if (practise) practise.innerHTML = `
-      <p class="block-label">Practise</p><h2>Follow the written steps</h2>
-      <section class="before-begin"><p class="block-label">Before you begin</p><h3>Have these ready</h3><ul>${lesson.beforeYouStart.map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>
-      <aside class="kpc-rule"><strong>KPC working rule:</strong> Work that belongs to a committee, board or project should remain in its Team so current and future volunteers can find it.</aside>
-      <ol class="detailed-steps">${steps.map(parts => `<li><div>${parts.map((part, index) => index === 0 ? `<strong>${esc(part)}</strong>` : `<p>${esc(part)}</p>`).join('')}</div></li>`).join('')}</ol>`;
+    if (practise) practise.innerHTML = `<p class="block-label">Practise</p><h2>Follow the written steps</h2><section class="before-begin"><p class="block-label">Before you begin</p><h3>Have these ready</h3><ul>${lesson.beforeYouStart.map(item => `<li>${esc(item)}</li>`).join('')}</ul></section><aside class="kpc-rule"><strong>KPC working rule:</strong> Work that belongs to a committee, board or project should remain in its Team so current and future volunteers can find it.</aside><ol class="detailed-steps">${steps.map(parts => `<li><div>${parts.map((part, index) => index === 0 ? `<strong>${esc(part)}</strong>` : `<p>${esc(part)}</p>`).join('')}</div></li>`).join('')}</ol>`;
 
     const check = page.querySelector('.check');
-    if (check) check.insertAdjacentHTML('beforebegin', `
-      <section class="lesson-block"><p class="block-label">Understand the workspace</p><h2>What the main areas are for</h2><dl class="workspace-definitions">${workspace.map(([term, text]) => `<div><dt>${esc(term)}</dt><dd>${esc(text)}</dd></div>`).join('')}</dl></section>
-      <section class="lesson-block kpc-example"><p class="block-label">KPC example</p><h2>Planning a Kitchen Talk</h2><p>The Communications Committee is preparing a new Kitchen Talk.</p><p>Instead of emailing several copies of the draft:</p><ul><li>The draft is saved in the Communications Team.</li><li>The working conversation is posted in the appropriate channel.</li><li>Volunteers reply beneath the original post.</li><li>Anyone who needs to take action is mentioned.</li><li>Committee members edit or comment on the same shared document.</li><li>The final version remains available to the Team.</li></ul><p><strong>This keeps the discussion, document and decisions together.</strong></p></section>
-      <section class="lesson-block"><p class="block-label">Choose the right place</p><div class="choice-grid">${choices.map(([title, items]) => `<div><h3>${esc(title)}</h3><ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul></div>`).join('')}</div></section>`);
+    if (check) check.insertAdjacentHTML('beforebegin', `<section class="lesson-block"><p class="block-label">Understand the workspace</p><h2>What the main areas are for</h2><dl class="workspace-definitions">${workspace.map(([term, text]) => `<div><dt>${esc(term)}</dt><dd>${esc(text)}</dd></div>`).join('')}</dl></section><section class="lesson-block kpc-example"><p class="block-label">KPC example</p><h2>Planning a Kitchen Talk</h2><p>The Communications Committee is preparing a new Kitchen Talk.</p><p>Instead of emailing several copies of the draft:</p><ul><li>The draft is saved in the Communications Team.</li><li>The working conversation is posted in the appropriate channel.</li><li>Volunteers reply beneath the original post.</li><li>Anyone who needs to take action is mentioned.</li><li>Committee members edit or comment on the same shared document.</li><li>The final version remains available to the Team.</li></ul><p><strong>This keeps the discussion, document and decisions together.</strong></p></section><section class="lesson-block"><p class="block-label">Choose the right place</p><div class="choice-grid">${choices.map(([title, items]) => `<div><h3>${esc(title)}</h3><ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul></div>`).join('')}</div></section>`);
 
     if (check) {
       check.querySelector('.block-label').textContent = 'Check';
@@ -119,6 +105,7 @@
   document.addEventListener('click', () => queueMicrotask(enhance));
   window.addEventListener('popstate', () => queueMicrotask(enhance));
   window.addEventListener('hashchange', () => queueMicrotask(enhance));
+  window.addEventListener('load', enhance);
 
   document.addEventListener('click', event => {
     if (!event.target.closest('[data-check-answers]') || !location.hash.includes(`lesson/${lessonId}`)) return;
@@ -133,5 +120,5 @@
     });
   });
 
-  enhance();
+  setTimeout(enhance, 0);
 })();
