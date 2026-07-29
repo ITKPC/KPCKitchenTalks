@@ -12,6 +12,7 @@
     estimatedMinutes: 5,
     status: 'written guide available',
     contentStatus: ['video coming soon', 'written guide available'],
+    builtOut: true,
     kpcVideo: { url: '', status: 'coming-soon', title: 'Working together in Microsoft Teams' },
     beforeYouStart: ['Your KPC Microsoft 365 account','Access to Microsoft Teams','Membership in at least one KPC Team','A computer, tablet or smartphone with internet access'],
     knowledgeCheck: [
@@ -92,8 +93,6 @@
     if (check) check.insertAdjacentHTML('beforebegin', `<section class="lesson-block"><p class="block-label">Understand the workspace</p><h2>What the main areas are for</h2><dl class="workspace-definitions">${workspace.map(([term, text]) => `<div><dt>${esc(term)}</dt><dd>${esc(text)}</dd></div>`).join('')}</dl></section><section class="lesson-block kpc-example"><p class="block-label">KPC example</p><h2>Planning a Kitchen Talk</h2><p>The Communications Committee is preparing a new Kitchen Talk.</p><p>Instead of emailing several copies of the draft:</p><ul><li>The draft is saved in the Communications Team.</li><li>The working conversation is posted in the appropriate channel.</li><li>Volunteers reply beneath the original post.</li><li>Anyone who needs to take action is mentioned.</li><li>Committee members edit or comment on the same shared document.</li><li>The final version remains available to the Team.</li></ul><p><strong>This keeps the discussion, document and decisions together.</strong></p></section><section class="lesson-block"><p class="block-label">Choose the right place</p><div class="choice-grid">${choices.map(([title, items]) => `<div><h3>${esc(title)}</h3><ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul></div>`).join('')}</div></section>`);
 
     if (check) {
-      check.querySelector('.block-label').textContent = 'Check';
-      check.querySelector('h2').textContent = 'Check your understanding';
       const result = check.querySelector('.check-result');
       if (result) result.dataset.teamsResult = 'true';
     }
@@ -102,9 +101,7 @@
     if (help) help.innerHTML = `<details open><summary>Having trouble? Open help options</summary><div class="trouble-list">${trouble.map(([title, text]) => `<div><h3>${esc(title)}</h3><p>${esc(text)}</p></div>`).join('')}</div></details>`;
   }
 
-  document.addEventListener('click', () => queueMicrotask(enhance));
-  window.addEventListener('popstate', () => queueMicrotask(enhance));
-  window.addEventListener('hashchange', () => queueMicrotask(enhance));
+  document.addEventListener('kpc:learn-rendered', enhance);
   window.addEventListener('load', enhance);
 
   document.addEventListener('click', event => {
