@@ -53,11 +53,11 @@
     ];
 
     app.innerHTML = `<div class="simple-lesson-page"><a class="simple-back" href="learn.html">← Back to Learn</a>
-      <header class="simple-lesson-header"><p class="eyebrow">Lesson 4 · Shared files in Teams</p><h1>Uploading a File and Using Version History in Teams</h1><p>Upload a document to the correct Team channel and use version history instead of creating duplicate files.</p><div class="simple-meta"><span>About 6 minutes</span><span>Video coming soon</span><span>Written guide available</span></div></header>
+      <header class="simple-lesson-header"><p class="eyebrow">Lesson 4 · Shared files in Teams</p><h1>Uploading a File and Using Version History in Teams</h1><p>Upload a document to the correct Team channel and use version history instead of creating duplicate files.</p><div class="simple-meta"><span>About 6 minutes</span><span>Video available</span><span>Written guide available</span></div></header>
 
       <section class="simple-block"><p class="eyebrow">After this lesson</p><h2>I can upload a file to a shared Team channel and use version history.</h2><p>This helps KPC volunteers work from one shared document instead of creating separate files called Version 1, Version 2, Final and Final Final.</p></section>
 
-      <section class="simple-block"><p class="eyebrow">See how KPC uses it</p><h2>Uploading a File and Using Version History in Teams</h2><p>Erne demonstrates how to upload a document to the KPC Mascots Video Production channel. He then opens the document’s version history to show how an earlier version can be viewed or restored.</p><div class="simple-placeholder"><strong>Video coming soon</strong><p>The completed Erne training video will appear here.</p></div></section>
+      <section class="simple-block"><p class="eyebrow">See how KPC uses it</p><h2>Uploading a File and Using Version History in Teams</h2><p>Erne demonstrates how to upload a document to the KPC Mascots Video Production channel. He then opens the document’s version history to show how an earlier version can be viewed or restored.</p><video class="simple-video" controls preload="metadata" playsinline aria-label="Uploading a File and Using Version History in Teams training video"><source src="assets/videos/Teams_Uploading_Files_1080p_Under25MB.mp4" type="video/mp4">Your browser cannot play this video.</video></section>
 
       <section class="simple-block"><p class="eyebrow">Before you begin</p><h2>Have these ready</h2><ul><li>A computer or tablet with internet access</li><li>Your KPC Microsoft 365 account</li><li>Access to the appropriate KPC Team</li><li>A document saved on your computer that you can use for practice</li><li>Permission to upload files to the selected channel</li></ul></section>
 
