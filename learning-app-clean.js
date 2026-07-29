@@ -34,8 +34,9 @@
   }
 
   function navigate(destination) {
-    history.pushState(null, '', destination ? `#${destination}` : '#');
-    render();
+    const nextHash = destination ? `#${destination}` : '#';
+    if (location.hash === nextHash) render();
+    else location.hash = nextHash;
     window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
@@ -91,11 +92,14 @@
   function lessonRow(path, lesson, index) {
     const destination = `lesson/${lesson.id}`;
     const built = isLessonBuilt(lesson);
-    return `<article class="lesson-row" data-go="${destination}" role="link" tabindex="0" aria-label="Open Lesson: ${escapeText(lesson.title)}">
+    const action = built
+      ? `<a class="button ${statusClass(true)}" href="#${destination}" aria-label="Open Lesson: ${escapeText(lesson.title)}">Open Lesson</a>`
+      : `<span class="button ${statusClass(false)} lesson-unavailable" aria-disabled="true" title="Lesson still being developed">Coming Soon</span>`;
+    return `<article class="lesson-row ${built ? 'lesson-row-built' : 'lesson-row-incomplete'}"${built ? ` data-go="${destination}" role="link" tabindex="0" aria-label="Open Lesson: ${escapeText(lesson.title)}"` : ''}>
       <div class="lesson-mascot">${mascotImage(path, 'lesson-mascot-image')}</div>
       <div class="lesson-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>
       <div class="lesson-copy"><div class="lesson-title-line"><h2>${escapeText(lesson.title)}</h2></div><p>${escapeText(lesson.description)}</p>${statusPills(lesson.contentStatus)}<span class="estimated">About ${lesson.estimatedMinutes || 4} minutes</span></div>
-      <button class="button ${statusClass(built)}" data-go="${destination}" title="${built ? 'Lesson built' : 'Lesson still being developed'}">Open Lesson</button>
+      ${action}
     </article>`;
   }
 
@@ -115,7 +119,7 @@
 
   function renderLesson(lessonId) {
     const lesson = lessonById(lessonId);
-    if (!lesson) return renderNotFound();
+    if (!lesson || !isLessonBuilt(lesson)) return renderNotFound();
     const path = pathById(lesson.pathId);
     if (!path) return renderNotFound();
     const singleLesson = path.lessons.length === 1;
@@ -135,7 +139,7 @@
   }
 
   function renderNotFound() {
-    app.innerHTML = '<section class="section white"><h1>That lesson was not found.</h1><p>Return to Learn and choose another lesson.</p><button class="button dark" data-go="">Back to Learn</button></section>';
+    app.innerHTML = '<section class="section white"><h1>This lesson is not available yet.</h1><p>Return to the lesson list and choose a green lesson.</p><button class="button dark" data-go="">Back to Learn</button></section>';
   }
 
   function render() {
@@ -148,6 +152,9 @@
   }
 
   document.addEventListener('click', event => {
+    const anchor = event.target.closest('a[href^="#lesson/"]');
+    if (anchor) return;
+
     const go = event.target.closest('[data-go]');
     if (go) {
       event.preventDefault();
@@ -173,6 +180,7 @@
     navigate(card.dataset.go || '');
   });
 
+  window.addEventListener('hashchange', render);
   window.addEventListener('popstate', render);
   render();
 })();
