@@ -14,6 +14,18 @@
   const pathLessons = path => path.lessons.map(lessonById).filter(Boolean);
   const lessonCount = count => `${count} ${count === 1 ? 'Lesson' : 'Lessons'}`;
 
+  function isLessonBuilt(lesson) {
+    if (!lesson) return false;
+    if (lesson.builtOut === true) return true;
+    const hasWrittenContent = Array.isArray(lesson.steps) && lesson.steps.length >= 3;
+    const hasCheck = Array.isArray(lesson.knowledgeCheck) && lesson.knowledgeCheck.length >= 1;
+    return hasWrittenContent && hasCheck;
+  }
+
+  function statusClass(built) {
+    return built ? 'lesson-status-built' : 'lesson-status-incomplete';
+  }
+
   function route() {
     const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
     if (parts[0] === 'path' && parts[1]) return { view: 'path', id: parts[1] };
@@ -41,6 +53,8 @@
 
   function pathCard(path) {
     const destination = cardDestination(path);
+    const items = pathLessons(path);
+    const complete = items.length > 0 && items.every(isLessonBuilt);
     const action = path.lessons.length === 1 ? 'Start this Lesson' : 'Explore Lessons';
     return `<article class="path-card" data-go="${destination}" role="link" tabindex="0" aria-label="${escapeText(action)}: ${escapeText(path.title)}">
       <div class="path-visual">${mascotImage(path)}</div>
@@ -48,7 +62,7 @@
         <h2>${escapeText(path.title)}</h2>
         <p>${escapeText(path.description)}</p>
         <div class="path-meta"><span>${lessonCount(path.lessons.length)}</span></div>
-        <button class="button dark" data-go="${destination}">${action}</button>
+        <button class="button ${statusClass(complete)}" data-go="${destination}" title="${complete ? 'Lessons built' : 'Lessons still being developed'}">${action}</button>
       </div>
     </article>`;
   }
@@ -76,11 +90,12 @@
 
   function lessonRow(path, lesson, index) {
     const destination = `lesson/${lesson.id}`;
+    const built = isLessonBuilt(lesson);
     return `<article class="lesson-row" data-go="${destination}" role="link" tabindex="0" aria-label="Open Lesson: ${escapeText(lesson.title)}">
       <div class="lesson-mascot">${mascotImage(path, 'lesson-mascot-image')}</div>
       <div class="lesson-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>
       <div class="lesson-copy"><div class="lesson-title-line"><h2>${escapeText(lesson.title)}</h2></div><p>${escapeText(lesson.description)}</p>${statusPills(lesson.contentStatus)}<span class="estimated">About ${lesson.estimatedMinutes || 4} minutes</span></div>
-      <button class="button outline" data-go="${destination}">Open Lesson</button>
+      <button class="button ${statusClass(built)}" data-go="${destination}" title="${built ? 'Lesson built' : 'Lesson still being developed'}">Open Lesson</button>
     </article>`;
   }
 
@@ -102,6 +117,7 @@
     const lesson = lessonById(lessonId);
     if (!lesson) return renderNotFound();
     const path = pathById(lesson.pathId);
+    if (!path) return renderNotFound();
     const singleLesson = path.lessons.length === 1;
     const crumbs = singleLesson ? [{ label: 'Learn', href: 'learn.html' }, { label: lesson.title }] : [{ label: 'Learn', href: 'learn.html' }, { label: path.title, href: `#path/${path.id}` }, { label: lesson.title }];
     const hasSteps = Array.isArray(lesson.steps) && lesson.steps.length;
@@ -128,6 +144,7 @@
     else if (current.view === 'lesson') renderLesson(current.id);
     else renderOverview();
     app.focus({ preventScroll: true });
+    document.dispatchEvent(new CustomEvent('kpc:learn-rendered', { detail: current }));
   }
 
   document.addEventListener('click', event => {
