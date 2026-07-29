@@ -22,6 +22,14 @@
     {q:'Which area shows replies, mentions and updates involving you?',a:['Activity','Files','Calendar'],correct:0}
   ];
 
+  const meetingQuestions = [
+    {q:'Where should you begin when scheduling a meeting for a particular KPC committee?',a:['In the correct Team','In a personal email account','In Microsoft Authenticator'],correct:0},
+    {q:'Which option should you choose from the Meet menu when the meeting needs to appear on everyone’s calendar?',a:['Meet now','Schedule a meeting','Start a chat'],correct:1},
+    {q:'What details should you review before selecting Send?',a:['Title, attendees and time','Only the background colour','Only the Team name'],correct:0},
+    {q:'Why is it useful to schedule the meeting from inside the Team?',a:['It keeps the meeting connected to the Team channel, files and conversations','It prevents attendees from receiving an invitation','It makes the meeting private to one person'],correct:0},
+    {q:'What happens after you select Send?',a:['Invitees receive an invitation and the meeting appears on their calendars','The meeting is saved only on your computer','The Team is deleted'],correct:0}
+  ];
+
   function checkMarkup(questions, id) {
     return `<div class="simple-check" data-check="${id}">${questions.map((q,i)=>`<fieldset><legend>${esc(q.q)}</legend>${q.a.map((answer,j)=>`<label><input type="radio" name="${id}-${i}" value="${j}"> ${esc(answer)}</label>`).join('')}</fieldset>`).join('')}<button class="button dark" data-check-button="${id}">Check my choices</button><div class="simple-result" aria-live="polite"></div></div>`;
   }
@@ -32,6 +40,7 @@
       <section class="simple-lesson-grid" aria-label="Available lessons">
         <article class="simple-lesson-card"><p class="eyebrow">Lesson 1</p><h2>Signing into Microsoft 365 for the first time</h2><p>Set up your KPC account, create your private password and complete Microsoft Authenticator.</p><a class="button" href="learn.html?lesson=first-sign-in">Open Lesson</a></article>
         <article class="simple-lesson-card"><p class="eyebrow">Lesson 2</p><h2>Teams: Working Together</h2><p>Learn how KPC volunteers use Teams to communicate, share files and work together in one organized place.</p><a class="button" href="learn.html?lesson=teams-working-together">Open Lesson</a></article>
+        <article class="simple-lesson-card"><p class="eyebrow">Lesson 3</p><h2>Creating a Teams Meeting</h2><p>Schedule a committee meeting from inside the correct Team so the invitation, channel and related work stay connected.</p><a class="button" href="learn.html?lesson=creating-teams-meeting">Open Lesson</a></article>
       </section>
       <section class="simple-games"><div><p class="eyebrow">Try it out</p><h2>Play a short KPC learning game.</h2><p>Use realistic situations to test what you know.</p></div><a class="button dark" href="index.html#games">Open the games</a></section>
     </div>`;
@@ -80,11 +89,38 @@
     </div>`;
   }
 
+  function renderMeeting() {
+    const steps = [
+      'Open Microsoft Teams and select the correct Team. Each KPC committee has its own shared space.',
+      'Select Meet in the upper-right corner and choose Schedule a meeting so the meeting is added to everyone’s calendar.',
+      'Complete the meeting details. Use a meaningful title, invite the appropriate attendees and set the date and time.',
+      'Confirm that the meeting is linked to the correct Team channel. Add a short description or agenda so attendees know what to expect.',
+      'Review the title, attendees, date and time to make sure everything is correct.',
+      'Select Send. Everyone receives an invitation and the meeting appears on their calendar.'
+    ];
+
+    app.innerHTML = `<div class="simple-lesson-page"><a class="simple-back" href="learn.html">← Back to Learn</a>
+      <header class="simple-lesson-header"><p class="eyebrow">Lesson 3 · Meetings in Teams</p><h1>Creating a Teams Meeting</h1><p>Schedule a KPC committee meeting from inside the correct Team so the invitation, channel, files and conversations remain connected.</p><div class="simple-meta"><span>About 4 minutes</span><span>Video available</span><span>Written guide available</span></div></header>
+      <section class="simple-block"><p class="eyebrow">After this lesson</p><h2>I can schedule a meeting from inside the correct KPC Team and send a complete invitation.</h2><p>Scheduling from inside the Team keeps the meeting connected to the committee’s shared workspace.</p></section>
+      <section class="simple-block"><p class="eyebrow">See how KPC uses it</p><h2>Creating a Teams Meeting</h2><video class="simple-video" controls preload="metadata" playsinline><source src="assets/videos/creating-a-teams-meeting-web.mp4" type="video/mp4">Your browser cannot play this video.</video></section>
+      <section class="simple-block"><p class="eyebrow">Before you begin</p><h2>Have these ready</h2><ul><li>Your KPC Microsoft 365 account</li><li>Access to the correct KPC Team</li><li>The meeting date and time</li><li>The names or email addresses of the people to invite</li><li>A short meeting purpose or agenda</li></ul></section>
+      <section class="simple-block"><p class="eyebrow">Practise</p><h2>Follow the written steps</h2><ol class="simple-steps">${steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol><p><strong>Quick tip:</strong> Scheduling from inside the Team makes it easier for committee members to find the related files and conversations later. Everything stays in one place.</p></section>
+      <section class="simple-block"><p class="eyebrow">Check</p><h2>Check your understanding</h2>${checkMarkup(meetingQuestions,'meeting')}</section>
+      <section class="simple-block simple-help"><h2>Having trouble?</h2><details><summary>I cannot see the Meet button</summary><p>Confirm that you opened the correct Team and channel and that you are signed in with your KPC account.</p></details><details><summary>I cannot schedule the meeting</summary><p>Your access may not allow meeting scheduling in that Team or channel. Ask the Team owner or the KPC Technology Team.</p></details><details><summary>The wrong channel is shown</summary><p>Cancel before sending, return to the correct Team and channel, and start the meeting again from there.</p></details><details><summary>I sent incorrect details</summary><p>Open the meeting from your calendar, correct the details and send the update to the attendees.</p></details></section>
+    </div>`;
+  }
+
+  const questionSets = {
+    'sign-in': signInQuestions,
+    teams: teamsQuestions,
+    meeting: meetingQuestions
+  };
+
   document.addEventListener('click', event => {
     const button = event.target.closest('[data-check-button]');
     if (!button) return;
     const id = button.dataset.checkButton;
-    const questions = id === 'sign-in' ? signInQuestions : teamsQuestions;
+    const questions = questionSets[id] || [];
     const wrapper = button.closest('[data-check]');
     let correct = 0;
     questions.forEach((q,i)=>{
@@ -92,11 +128,20 @@
       if (selected && Number(selected.value) === q.correct) correct++;
     });
     const result = wrapper.querySelector('.simple-result');
-    if (correct === questions.length) result.innerHTML = id === 'teams' ? '<strong>You are ready to work with your KPC Team.</strong><p>You can join a conversation, find shared files and help your group work from one organized workspace.</p>' : '<strong>You are ready for your first KPC sign-in.</strong><p>Your choices match the safe KPC approach.</p>';
-    else result.innerHTML = `<strong>Review the lesson and try again.</strong><p>${correct} of ${questions.length} answers are correct.</p>`;
+    if (correct === questions.length) {
+      const messages = {
+        'sign-in': '<strong>You are ready for your first KPC sign-in.</strong><p>Your choices match the safe KPC approach.</p>',
+        teams: '<strong>You are ready to work with your KPC Team.</strong><p>You can join a conversation, find shared files and help your group work from one organized workspace.</p>',
+        meeting: '<strong>You are ready to schedule a KPC committee meeting.</strong><p>You can choose the correct Team, complete the meeting details and send the invitation.</p>'
+      };
+      result.innerHTML = messages[id];
+    } else {
+      result.innerHTML = `<strong>Review the lesson and try again.</strong><p>${correct} of ${questions.length} answers are correct.</p>`;
+    }
   });
 
   if (lessonId === 'first-sign-in') renderSignIn();
   else if (lessonId === 'teams-working-together') renderTeams();
+  else if (lessonId === 'creating-teams-meeting') renderMeeting();
   else renderOverview();
 })();
