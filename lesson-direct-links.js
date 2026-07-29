@@ -1,34 +1,45 @@
 (() => {
-  function applyDirectLinks() {
-    document.querySelectorAll('.lesson-row-built').forEach(row => {
-      const link = row.querySelector('a.lesson-status-built');
-      if (!link) return;
+  function routeUrl(destination) {
+    const clean = String(destination || '').replace(/^#/, '');
+    if (!clean) return 'learn.html';
+    return `learn.html?route=${encodeURIComponent(clean)}#${clean}`;
+  }
 
-      const hash = link.getAttribute('href') || '';
-      const lessonHash = hash.includes('#lesson/') ? hash.slice(hash.indexOf('#lesson/')) : '';
-      if (!lessonHash) return;
+  function destinationFromElement(element) {
+    if (!element) return '';
+    if (element.dataset?.go !== undefined) return element.dataset.go || '';
 
-      link.href = `learn.html${lessonHash}`;
-      link.dataset.directLessonLink = 'true';
+    const href = element.getAttribute?.('href') || '';
+    const match = href.match(/#(path|lesson)\/[^?#]+/);
+    return match ? match[0].slice(1) : '';
+  }
 
-      row.removeAttribute('data-go');
-      row.removeAttribute('role');
-      row.removeAttribute('tabindex');
-      row.removeAttribute('aria-label');
+  function hardenLinks() {
+    document.querySelectorAll('a[href^="#path/"], a[href^="#lesson/"], a[href*="learn.html#path/"], a[href*="learn.html#lesson/"]').forEach(link => {
+      const destination = destinationFromElement(link);
+      if (!destination) return;
+      link.href = routeUrl(destination);
+      link.dataset.learnRoute = destination;
+    });
+
+    document.querySelectorAll('[data-go]').forEach(control => {
+      const destination = control.dataset.go || '';
+      control.dataset.learnRoute = destination;
     });
   }
 
-  document.addEventListener('kpc:learn-rendered', applyDirectLinks);
-  window.addEventListener('load', applyDirectLinks);
+  document.addEventListener('kpc:learn-rendered', hardenLinks);
+  window.addEventListener('load', hardenLinks);
 
   document.addEventListener('click', event => {
-    const link = event.target.closest('a[data-direct-lesson-link="true"]');
-    if (!link) return;
+    const control = event.target.closest('[data-learn-route]');
+    if (!control) return;
 
+    const destination = control.dataset.learnRoute || '';
     event.preventDefault();
     event.stopImmediatePropagation();
-    window.location.assign(link.href);
+    window.location.href = routeUrl(destination);
   }, true);
 
-  applyDirectLinks();
+  hardenLinks();
 })();
