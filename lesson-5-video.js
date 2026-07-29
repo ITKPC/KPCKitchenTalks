@@ -1,0 +1,26 @@
+(() => {
+  const lessonId = new URLSearchParams(location.search).get('lesson');
+  if (lessonId !== 'organizing-shared-work-planner') return;
+
+  const meta = document.querySelector('.simple-lesson-header .simple-meta');
+  if (meta) {
+    const videoStatus = [...meta.querySelectorAll('span')].find(item => /video/i.test(item.textContent));
+    if (videoStatus) videoStatus.textContent = 'Video available';
+  }
+
+  const blocks = [...document.querySelectorAll('.simple-block')];
+  const videoBlock = blocks.find(block => block.querySelector('h2')?.textContent.trim() === 'Organizing Shared Work with Planner');
+  if (!videoBlock) return;
+
+  const placeholder = videoBlock.querySelector('.simple-placeholder');
+  if (!placeholder) return;
+
+  const video = document.createElement('video');
+  video.className = 'simple-video';
+  video.controls = true;
+  video.preload = 'metadata';
+  video.playsInline = true;
+  video.setAttribute('aria-label', 'Organizing Shared Work with Planner training video');
+  video.innerHTML = '<source src="assets/videos/Planner_compressed_under_25MB.mp4" type="video/mp4">Your browser cannot play this video.';
+  placeholder.replaceWith(video);
+})();
