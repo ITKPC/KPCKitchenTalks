@@ -21,7 +21,13 @@
   video.preload = 'metadata';
   video.playsInline = true;
   video.setAttribute('aria-label', 'How to Ask Copilot for Help training video');
-  video.innerHTML = '<source src="assets/videos/How_to_Ask_Copilot_for_Help_Under25MB (1).mp4" type="video/mp4">Your browser cannot play this video.';
+
+  const source = document.createElement('source');
+  source.src = 'assets/videos/How_to_Ask_Copilot_for_Help_Under25MB%20%281%29.mp4';
+  source.type = 'video/mp4';
+  video.appendChild(source);
+  video.appendChild(document.createTextNode('Your browser cannot play this video.'));
 
   placeholder.replaceWith(video);
+  video.load();
 })();
