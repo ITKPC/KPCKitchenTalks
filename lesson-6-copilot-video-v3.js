@@ -2,7 +2,7 @@
   const lessonId = new URLSearchParams(window.location.search).get('lesson');
   if (lessonId !== 'how-to-ask-copilot') return;
 
-  const videoPath = 'assets/videos/How_to_Ask_Copilot_for_Help_Under25MB (1).mp4';
+  const videoPath = 'assets/videos/How_to_Ask_Copilot_for_Help_Video_20MB.mp4';
 
   function installVideo() {
     const lessonPage = document.querySelector('.simple-lesson-page');
